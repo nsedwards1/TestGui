@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="663.0" prefWidth="738.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.ChartController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <LineChart fx:id="graph" layoutX="57.0" layoutY="73.0" minHeight="46.0" prefHeight="240.0" prefWidth="618.0" title="Line Chart">
+      <xAxis>
+        <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
+      </yAxis>
+    </LineChart>
+    <Button fx:id="btnUpdate" layoutX="665.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateGraph" text="Update" />
+    <LineChart id="graph" fx:id="boolChart1" layoutX="66.0" layoutY="332.0" minHeight="46.0" prefHeight="96.0" prefWidth="602.0" title="">
+      <xAxis>
+        <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis label="" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+      </yAxis>
+      <padding>
+        <Insets />
+      </padding>
+    </LineChart>
+    <LineChart id="graph" fx:id="boolChart2" layoutX="66.0" layoutY="364.0" minHeight="46.0" prefHeight="96.0" prefWidth="609.0" title="">
+      <xAxis>
+        <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis label="" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+      </yAxis>
+      <padding>
+        <Insets />
+      </padding>
+    </LineChart>
+    <LineChart id="graph" fx:id="boolChart3" layoutX="66.0" layoutY="397.0" minHeight="46.0" prefHeight="96.0" prefWidth="609.0" title="">
+      <xAxis>
+        <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis label="" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+      </yAxis>
+      <padding>
+        <Insets />
+      </padding>
+    </LineChart>
+  </children>
+</AnchorPane>
