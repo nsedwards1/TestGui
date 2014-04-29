@@ -7,8 +7,12 @@ import java.io.IOException;
 import net.sourceforge.jpcap.net.LinkLayers;
 import net.sourceforge.jpcap.net.Packet;
 import net.sourceforge.jpcap.net.PacketFactory;
+import net.sourceforge.jpcap.net.TCPPacket;
 
 public class PcapReader {
+	
+	private XmlProcessor input = new XmlProcessor();
+	private XmlProcessor output = new XmlProcessor();
 	
 	private void parseFile(String fileName) {
 		FileInputStream fis = null;
@@ -34,7 +38,11 @@ public class PcapReader {
 					return;
 				
 				Packet p = PacketFactory.dataToPacket(LinkLayers.EN10MB, data);
-				System.out.println(p);
+//				System.out.println(p);
+				
+				if(p instanceof TCPPacket) {
+					processPacket((TCPPacket)p);
+				}
 			}
 			
 		} catch (Exception e) {
@@ -49,6 +57,18 @@ public class PcapReader {
 		}
 	}
 	
+	private void processPacket(TCPPacket p) {
+//		if(p.getSourcePort() != 5678)
+//			return;
+		if(p.getData().length < 10)
+			return;
+		
+//		if(p.getSourcePort() == 5678)
+//			input.addData(p.getData());
+		if(p.getSourcePort() == 1837)
+			output.addData(p.getData());
+	}
+
 	private int getPacketLength(byte[] packetHeader) {
 		int ret = 0;
 		for(int i = 0; i < 4; i++) {
