@@ -6,11 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="663.0" prefWidth="738.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.ChartController">
   <!-- TODO Add Nodes -->
   <children>
-    <LineChart fx:id="graph" layoutX="57.0" layoutY="73.0" minHeight="46.0" prefHeight="240.0" prefWidth="618.0" title="Line Chart">
+    <LineChart fx:id="graph" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" layoutY="73.0" minHeight="46.0" prefHeight="240.0" prefWidth="710.0" rotate="0.0" title="Line Chart" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
       <xAxis>
         <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
@@ -18,35 +19,72 @@
         <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
       </yAxis>
     </LineChart>
-    <Button fx:id="btnUpdate" layoutX="665.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateGraph" text="Update" />
-    <LineChart id="graph" fx:id="boolChart1" layoutX="66.0" layoutY="332.0" minHeight="46.0" prefHeight="96.0" prefWidth="602.0" title="">
+    <Button fx:id="btnUpdate" layoutY="14.0" mnemonicParsing="false" onAction="#updateGraph" text="Update" AnchorPane.rightAnchor="14.0" />
+    <LineChart fx:id="boolChart1" animated="false" layoutY="332.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
       <xAxis>
         <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
       <yAxis>
-        <NumberAxis label="" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+        <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
       </yAxis>
       <padding>
         <Insets />
       </padding>
     </LineChart>
-    <LineChart id="graph" fx:id="boolChart2" layoutX="66.0" layoutY="364.0" minHeight="46.0" prefHeight="96.0" prefWidth="609.0" title="">
+    <LineChart fx:id="boolChart2" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="363.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
       <xAxis>
-        <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+        <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
       <yAxis>
-        <NumberAxis label="" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+        <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
       </yAxis>
       <padding>
         <Insets />
       </padding>
     </LineChart>
-    <LineChart id="graph" fx:id="boolChart3" layoutX="66.0" layoutY="397.0" minHeight="46.0" prefHeight="96.0" prefWidth="609.0" title="">
+    <LineChart fx:id="boolChart3" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="398.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <xAxis>
+        <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0">
+          <tickLabelFont>
+            <Font size="10.0" fx:id="x1" />
+          </tickLabelFont>
+        </NumberAxis>
+      </yAxis>
+      <padding>
+        <Insets />
+      </padding>
+    </LineChart>
+    <LineChart id="boolChart4" animated="false" layoutY="431.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
       <xAxis>
         <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
       <yAxis>
-        <NumberAxis label="" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+        <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+      </yAxis>
+      <padding>
+        <Insets />
+      </padding>
+    </LineChart>
+    <LineChart id="boolChart5" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="462.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <xAxis>
+        <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis animated="true" label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+      </yAxis>
+      <padding>
+        <Insets />
+      </padding>
+    </LineChart>
+    <LineChart id="boolChart6" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="497.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <xAxis>
+        <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis animated="false" forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
       </yAxis>
       <padding>
         <Insets />
