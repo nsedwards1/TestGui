@@ -12,12 +12,13 @@ public class Helper {
 	
 	//Add a single Linked List to the chart
 	public void assignListToChart(LinkedList<Float> valueList, 
-			  					LineChart<Float, Float> lineChart)
+			  					LineChart<Float, Float> lineChart,
+			  					String name)
 	{
 		ObservableList<XYChart.Series<Float, Float>> floatChartData = FXCollections.observableArrayList();
 		
 		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
-        //floatSeries.setName("Float Series 1");
+        floatSeries.setName(name);
 		float i=0;
 		for (float f : valueList)
 		{
@@ -31,14 +32,16 @@ public class Helper {
 
 	//Add a single Linked List to the chart
 	public void assignListToChart(List<LinkedList<Float>> valueListArray, 
-				LineChart<Float, Float> lineChart)
+				LineChart<Float, Float> lineChart,
+				List<String> names)
 	{
 		ObservableList<XYChart.Series<Float, Float>> floatChartData = FXCollections.observableArrayList();
 		
 		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
-				
+		int j=0;		
         for (LinkedList<Float> ll : valueListArray)
         {
+        	floatSeries.setName(names.get(j));
 			float i=0;
 			for (float f : ll)
 			{
@@ -47,6 +50,7 @@ public class Helper {
 			}
 			floatChartData.add(floatSeries);
 			floatSeries = new LineChart.Series<Float, Float>();
+			j++;
         }
 		//floatChartData.add(floatSeries);
 		lineChart.setCreateSymbols(false);

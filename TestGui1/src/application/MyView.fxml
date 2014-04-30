@@ -8,95 +8,683 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="823.0" prefWidth="738.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.ChartController">
+<AnchorPane prefHeight="1000.0" prefWidth="1550.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.ChartController">
   <!-- TODO Add Nodes -->
   <children>
-    <LineChart fx:id="graph" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" layoutY="73.0" minHeight="46.0" prefHeight="240.0" prefWidth="710.0" rotate="0.0" title="Line Chart" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
-      </yAxis>
-    </LineChart>
     <Button fx:id="btnUpdate" layoutY="14.0" mnemonicParsing="false" onAction="#updateGraph" text="Update" AnchorPane.rightAnchor="14.0" />
-    <LineChart fx:id="boolChart1" animated="false" layoutY="509.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
-      </yAxis>
-      <padding>
-        <Insets />
-      </padding>
-    </LineChart>
-    <LineChart fx:id="boolChart2" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="540.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
-      </yAxis>
-      <padding>
-        <Insets />
-      </padding>
-    </LineChart>
-    <LineChart fx:id="boolChart3" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="575.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0">
-          <tickLabelFont>
-            <Font size="10.0" fx:id="x1" />
-          </tickLabelFont>
-        </NumberAxis>
-      </yAxis>
-      <padding>
-        <Insets />
-      </padding>
-    </LineChart>
-    <LineChart fx:id="boolChart4" animated="false" layoutY="608.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
-      </yAxis>
-      <padding>
-        <Insets />
-      </padding>
-    </LineChart>
-    <LineChart fx:id="boolChart5" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="639.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis animated="true" label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
-      </yAxis>
-      <padding>
-        <Insets />
-      </padding>
-    </LineChart>
-    <LineChart fx:id="boolChart6" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="674.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="710.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <xAxis>
-        <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis animated="false" forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
-      </yAxis>
-      <padding>
-        <Insets />
-      </padding>
-    </LineChart>
-    <LineChart id="graph" fx:id="graphF" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" layoutX="14.0" layoutY="322.0" minHeight="46.0" prefHeight="180.0" prefWidth="710.0" rotate="0.0" title="Line Chart">
-      <xAxis>
-        <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
-      </yAxis>
-    </LineChart>
+    <TabPane layoutY="46.0" prefHeight="933.0" prefWidth="1522.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <tabs>
+        <Tab text="Pump Room">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="822.0">
+              <children>
+                <LineChart id="graph" fx:id="pumpGraph" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" layoutY="14.0" minHeight="46.0" prefHeight="275.0" prefWidth="1480.0" rotate="0.0" title="Line Chart" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="28.0">
+                  <xAxis>
+                    <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
+                  </yAxis>
+                </LineChart>
+                <ScrollPane id="ScrollPane" prefHeight="596.0" prefViewportHeight="1715.0" prefViewportWidth="1102.0" prefWidth="1495.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="303.0">
+                  <content>
+                    <AnchorPane id="AnchorPane" prefWidth="1102.0">
+                      <children>
+                        <LineChart fx:id="pumpBool1" animated="false" layoutY="0.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool2" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="31.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" prefWidth="1430.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool3" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="66.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0">
+                              <tickLabelFont>
+                                <Font size="10.0" fx:id="x1" />
+                              </tickLabelFont>
+                            </NumberAxis>
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool4" animated="false" layoutY="99.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool5" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="136.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool6" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="171.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool7" animated="false" layoutY="204.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool8" animated="false" layoutY="241.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool9" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="272.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool10" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="307.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool11" animated="false" layoutY="340.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool13" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="384.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="63.0" prefWidth="1480.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool14" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="412.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool15" animated="false" layoutY="445.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool16" animated="false" layoutY="478.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1480.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool17" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="509.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool18" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="544.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool19" animated="false" layoutY="577.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool20" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="614.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool21" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="649.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool22" animated="false" layoutY="682.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool23" animated="false" layoutY="722.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool24" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="753.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool25" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="788.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool26" animated="false" layoutY="821.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool27" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="858.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool28" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="893.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool29" animated="false" layoutY="926.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool30" animated="false" layoutY="963.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool31" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="994.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool32" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="1029.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool33" animated="false" layoutY="1062.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool34" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="1099.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool35" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="1134.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool36" animated="false" layoutY="1167.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool37" animated="false" layoutY="1200.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool38" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="1231.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool39" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="1266.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool40" animated="false" layoutY="1299.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool41" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="1336.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool42" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="1371.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool43" animated="false" layoutY="1404.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool44" animated="false" layoutY="1441.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool45" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="1472.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool46" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="1507.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool47" animated="false" layoutY="1540.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool48" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="1577.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool49" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="1612.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                        <LineChart fx:id="pumpBool50" animated="false" layoutY="1645.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1102.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-378.0">
+                          <xAxis>
+                            <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets />
+                          </padding>
+                        </LineChart>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Misc">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <LineChart id="graphF" fx:id="miscGraph" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" layoutX="14.0" layoutY="14.0" minHeight="46.0" prefHeight="232.0" prefWidth="1253.0" rotate="0.0" title="Line Chart">
+                  <xAxis>
+                    <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
+                  </yAxis>
+                </LineChart>
+                <VBox layoutX="360.0" layoutY="357.0" prefHeight="200.0" prefWidth="100.0" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="AHWinch">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="822.0">
+              <children>
+                <LineChart fx:id="AHW_Graph" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" layoutY="14.0" legendVisible="true" minHeight="46.0" prefHeight="240.0" prefWidth="1102.0" rotate="0.0" snapToPixel="true" title="Combined Graph" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                  <xAxis>
+                    <NumberAxis label="Values for X-Axis" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis label="Values for Y-Axis" side="LEFT" tickUnit="1.0" upperBound="3.0" />
+                  </yAxis>
+                </LineChart>
+                <LineChart id="boolChart1" animated="false" layoutY="294.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="551.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="565.0">
+                  <xAxis>
+                    <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                  </yAxis>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </LineChart>
+                <LineChart id="boolChart2" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="325.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1347.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="565.0">
+                  <xAxis>
+                    <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="true" tickUnit="1.0" upperBound="1.0" />
+                  </yAxis>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </LineChart>
+                <LineChart id="boolChart3" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="360.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1347.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="565.0">
+                  <xAxis>
+                    <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                  </yAxis>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </LineChart>
+                <LineChart id="boolChart4" animated="false" layoutY="393.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1347.0" title="" titleSide="LEFT" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="565.0">
+                  <xAxis>
+                    <NumberAxis label="" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickUnit="1.0" upperBound="1.0" />
+                  </yAxis>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </LineChart>
+                <LineChart id="boolChart5" alternativeRowFillVisible="true" animated="false" horizontalGridLinesVisible="true" layoutY="424.0" legendSide="LEFT" maxWidth="-1.0" minHeight="46.0" prefHeight="70.0" prefWidth="1302.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" title="" titleSide="LEFT" translateX="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="565.0">
+                  <xAxis>
+                    <NumberAxis label="" lowerBound="0.0" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis animated="true" label="" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelGap="0.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                  </yAxis>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </LineChart>
+                <LineChart id="boolChart6" alternativeColumnFillVisible="false" alternativeRowFillVisible="true" animated="false" createSymbols="true" disable="false" focusTraversable="false" horizontalZeroLineVisible="true" layoutY="463.0" legendSide="LEFT" minHeight="46.0" prefHeight="70.0" prefWidth="1123.0" title="" titleSide="LEFT" verticalGridLinesVisible="true" verticalZeroLineVisible="true" visible="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="565.0">
+                  <xAxis>
+                    <NumberAxis label="" lowerBound="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="true" tickMarkVisible="true" tickUnit="1.0" upperBound="3.0" />
+                  </xAxis>
+                  <yAxis>
+                    <NumberAxis animated="false" forceZeroInRange="true" label="" minorTickVisible="true" prefHeight="52.0" prefWidth="33.0" side="LEFT" tickLabelFont="$x1" tickLabelGap="0.0" tickLength="8.0" tickMarkVisible="false" tickUnit="1.0" upperBound="1.0" />
+                  </yAxis>
+                  <padding>
+                    <Insets />
+                  </padding>
+                </LineChart>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <Button id="btnUpdate" fx:id="btnStart" layoutX="1390.0" layoutY="14.0" mnemonicParsing="false" onAction="#startClicked" text="Start" />
+    <Button id="btnUpdate" fx:id="btn1Min" layoutX="944.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn1MinClicked" text="1 Min" />
+    <Button id="btnUpdate" fx:id="btn5Min" layoutX="1005.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn5MinClicked" text="5 Min" />
+    <Button id="btnUpdate" fx:id="btn10Min" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn10MinClicked" text="10 Min" />
   </children>
 </AnchorPane>
