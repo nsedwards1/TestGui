@@ -17,7 +17,7 @@ public class PcapReader {
 	private long startClockTime = -1;
 	private long startPcapTime = -1;
 	
-	private void parseFile(String fileName) {
+	public void parseFile(String fileName) {
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(new File(fileName));
@@ -86,8 +86,8 @@ public class PcapReader {
 		if(p.getData().length < 10)
 			return;
 		
-//		if(p.getSourcePort() == 5678)
-//			input.addData(p.getData());
+		if(p.getSourcePort() == 5678)
+			input.addData(p.getData());
 		if(p.getSourcePort() == 1837)
 			output.addData(p.getData());
 	}
@@ -103,6 +103,7 @@ public class PcapReader {
 
 	public static void main(String[] args) {
 		PcapReader reader = new PcapReader();
+//		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
 		reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
 	}
 	

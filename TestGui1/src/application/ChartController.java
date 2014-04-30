@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import towcon.pcap.processor.PcapReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,22 +30,22 @@ public class ChartController {
     @FXML
     protected void initialize() {
     	
-    	DataManager.initDummyData(300);
+//    	DataManager.initDummyData(300);
     }
     
     @FXML
     private void updateGraph(ActionEvent event)
     {
-    	DataManager.updateDummyData(10);
+//    	DataManager.updateDummyData(10);
         
     	//Add a bunch of values to a List to display in single graph
         List<LinkedList<Float>> fll = new ArrayList<LinkedList<Float>>();
         List<String> nameList1 = new ArrayList<String>();    // This is not a good way to do this. Feel free to change or give suggestion on better way.
-        fll.add(DataManager.getFloatList("float1"));
+        fll.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"));
         nameList1.add("float1");
-        fll.add(DataManager.getFloatList("float2"));
+        fll.add(DataManager.getFloatList("RRAHWinch.wire_length_paid_out"));
         nameList1.add("float2");
-        fll.add(DataManager.getFloatList("float3"));
+        fll.add(DataManager.getFloatList("RRAHWinch.wire_length_on_drum"));
         nameList1.add("float3");
         fll.add(DataManager.getBoolFloatList("boolfloat1"));
         nameList1.add("boolfloat1");
@@ -53,11 +54,11 @@ public class ChartController {
         //Add a bunch of values to a List to display in single graph
         List<LinkedList<Float>> fll2 = new ArrayList<LinkedList<Float>>();
         List<String> nameList2 = new ArrayList<String>();
-        fll2.add(DataManager.getFloatList("float4"));
+        fll2.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"));
         nameList2.add("float4");
-        fll2.add(DataManager.getFloatList("float5"));
+        fll2.add(DataManager.getFloatList("RRAHWinch.wire_length_paid_out"));
         nameList2.add("float5");
-        fll2.add(DataManager.getFloatList("float6"));
+        fll2.add(DataManager.getFloatList("RRAHWinch.wire_length_on_drum"));
         nameList2.add("float6");
         fll2.add(DataManager.getBoolFloatList("boolfloat4"));
         nameList2.add("boolfloat4");
@@ -69,7 +70,7 @@ public class ChartController {
         h.assignListToChart(DataManager.getBoolFloatList("boolfloat3"), pumpBool3, "chart3");
         h.assignListToChart(DataManager.getBoolFloatList("boolfloat4"), pumpBool31, "chart4");
         h.assignListToChart(DataManager.getBoolFloatList("boolfloat7"), pumpBool50, "chart5");
-        h.assignListToChart(DataManager.getFloatList("float9"), pumpBool9, "chart9");//float value in bool chart
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"), pumpBool9, "chart9");//float value in bool chart
         
 //        //Another way to do things, but probably not the best        
 //        boolChart5.setCreateSymbols(false);
@@ -83,7 +84,14 @@ public class ChartController {
     @FXML
     private void startClicked (ActionEvent event)
     {
-    	System.out.println("Start button clicked.");
+    	Thread t = new Thread() {
+    	    public void run() {
+    	        PcapReader reader = new PcapReader();
+    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
+    	    }
+    	};
+    	t.setName("PcapReader Thread");
+    	t.start();
     }
     
     @FXML

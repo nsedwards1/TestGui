@@ -17,10 +17,14 @@ public class DataManager {
 	private static Random random = new Random();
 	
 	public static LinkedList<Boolean> getBooleanList(String name) {
+		if(!booleanMap.containsKey(name))
+			booleanMap.put(name, new LinkedList<Boolean>());
 		return booleanMap.get(name);
 	}
 	
 	public static LinkedList<Double> getDoubleList(String name) {
+		if(!doubleMap.containsKey(name))
+			doubleMap.put(name, new LinkedList<Double>());
 		return doubleMap.get(name);
 	}
 	
@@ -30,6 +34,8 @@ public class DataManager {
 		return floatMap.get(name);
 	}
 	public static LinkedList<Float> getBoolFloatList(String name) {
+		if(!boolfloatMap.containsKey(name))
+			boolfloatMap.put(name, new LinkedList<Float>());
 		return boolfloatMap.get(name);
 	}
 	

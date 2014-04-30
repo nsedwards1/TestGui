@@ -63,7 +63,12 @@ public class XmlProcessor {
 					String parseValue = iter.substring(equals + 2, iter.length() - 1);
 					float dmValue = -87;
 					try {
-						dmValue = Float.parseFloat(parseValue);
+						if("false".equals(parseValue))
+							dmValue = 0.0f;
+						else if("true".equals(parseValue))
+							dmValue = 1.0f;
+						else
+							dmValue = Float.parseFloat(parseValue);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
