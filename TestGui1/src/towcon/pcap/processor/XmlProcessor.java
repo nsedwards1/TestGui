@@ -68,8 +68,8 @@ public class XmlProcessor {
 						e.printStackTrace();
 					}
 					
-					DataManager.addFloatSample(dmName, dmValue);
-//					System.out.println(iter + " ==> " + dmName + " = " + dmValue);
+					float scaledValue = DataManager.addFloatSample(dmName, dmValue);
+//					System.out.println(iter + " ==> " + dmName + " = " + dmValue + " scaled: " + scaledValue);
 				}
 				else if(iter.endsWith("/>"))
 					System.out.print("");			//Do Nothing

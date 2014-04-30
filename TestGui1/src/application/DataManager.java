@@ -11,6 +11,9 @@ public class DataManager {
 	private static HashMap<String, LinkedList<Float>> floatMap = new HashMap<String, LinkedList<Float>>();
 	private static HashMap<String, LinkedList<Float>> boolfloatMap = new HashMap<String, LinkedList<Float>>();
 	
+	private static HashMap<String, Float> minFloatVals = new HashMap<String, Float>();
+	private static HashMap<String, Float> maxFloatVals = new HashMap<String, Float>();
+	
 	private static Random random = new Random();
 	
 	public static LinkedList<Boolean> getBooleanList(String name) {
@@ -30,13 +33,61 @@ public class DataManager {
 		return boolfloatMap.get(name);
 	}
 	
-	public static void addFloatSample(String name, float value) {
+	public static float addFloatSample(String name, float value) {
+		float ret = -1.0f;
 		LinkedList<Float> floatList = getFloatList(name);
+		float min = 0.0f;
+		float max = 1.0f;
+		if(minFloatVals.containsKey(name))
+			min = minFloatVals.get(name);
+		if(maxFloatVals.containsKey(name))
+			max = maxFloatVals.get(name);
 		synchronized(floatList) {
-			floatList.add(value);
+			
+			if(value > max) {
+				rescaleAll(floatList, min, max, value);
+				max = value;
+				maxFloatVals.put(name, max);
+			}
+			if(value < min) {
+				rescaleAll(floatList, min, max, value);
+				min = value;
+				minFloatVals.put(name, min);
+			}
+			
+			ret = scaleFloatVal(value, min, max);
+			floatList.add(ret);
 			if(floatList.size() > 300)				//TODO: Make dynamic
 				floatList.removeFirst();			//Limit to 300 samples
 		}
+		
+		return ret;
+	}
+	
+	private static void rescaleAll(LinkedList<Float> floatList, float min, float max, float value) {
+		float multiplier = 1.0f;
+		float offset = 0.0f;
+		if(value < min) {
+			multiplier = (max - min) / (max - value);
+			offset = scaleFloatVal(min, value, max);		//This is what the min used to be
+		}
+		else if(value > max) {
+			multiplier = (max - min) / (value - min);
+			offset = scaleFloatVal(max, min, value);		//This is what the max used to be
+		}
+		else {
+			return;				//No need to rescale
+		}
+		
+		for(int i = 0; i < floatList.size(); i++) {
+			float newValue = floatList.get(i) * multiplier + offset;
+			newValue = Math.min(Math.max(newValue, 0.0f), 1.0f);
+			floatList.set(i, newValue);
+		}
+	}
+
+	private static float scaleFloatVal(float val, float min, float max) {
+		return (val - min) / (max - min);
 	}
 	
 	public static void initDummyData(int numberOfSamples) {
