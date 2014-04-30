@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import towcon.pcap.processor.PcapReader;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -91,7 +92,31 @@ public class ChartController {
     	    }
     	};
     	t.setName("PcapReader Thread");
+    	t.setDaemon(true);
     	t.start();
+    	
+    	Thread t2 = new Thread() {
+    	    public void run() {
+    	        while(true) {
+    	        	Platform.runLater(new Runnable() {
+    	                @Override
+    	                public void run() {
+    	                	updateGraph(null);
+    	                }
+    	            });
+    	        	
+    	        	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+    	        }
+    	    }
+    	};
+    	t2.setName("Screen-Updater Thread");
+    	t2.setDaemon(true);
+    	t2.start();
     }
     
     @FXML
