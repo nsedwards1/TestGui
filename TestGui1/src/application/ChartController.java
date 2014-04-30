@@ -39,7 +39,7 @@ public class ChartController {
         
     	//Add a bunch of values to a List to display in single graph
         List<LinkedList<Float>> fll = new ArrayList<LinkedList<Float>>();
-        List<String> nameList1 = new ArrayList<String>();
+        List<String> nameList1 = new ArrayList<String>();    // This is not a good way to do this. Feel free to change or give suggestion on better way.
         fll.add(DataManager.getFloatList("float1"));
         nameList1.add("float1");
         fll.add(DataManager.getFloatList("float2"));

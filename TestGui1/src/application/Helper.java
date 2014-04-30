@@ -19,11 +19,13 @@ public class Helper {
 		
 		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
         floatSeries.setName(name);
-		float i=0;
-		for (float f : valueList)
+		float i=0;synchronized (valueList)
 		{
-			floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
-			i++;
+			for (float f : valueList)
+			{
+				floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
+				i++;
+			}
 		}
 		floatChartData.add(floatSeries);
 		lineChart.setCreateSymbols(false);
@@ -39,14 +41,17 @@ public class Helper {
 		
 		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
 		int j=0;		
-        for (LinkedList<Float> ll : valueListArray)
+        for (LinkedList<Float> valueList : valueListArray)
         {
         	floatSeries.setName(names.get(j));
 			float i=0;
-			for (float f : ll)
+			synchronized (valueList)
 			{
-				floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
-				i++;
+				for (float f : valueList)
+				{
+					floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
+					i++;
+				}
 			}
 			floatChartData.add(floatSeries);
 			floatSeries = new LineChart.Series<Float, Float>();
