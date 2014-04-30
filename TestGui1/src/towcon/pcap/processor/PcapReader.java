@@ -34,13 +34,14 @@ public class PcapReader {
 				if(bytesRead != packetHeader.length)
 					return;
 				
-				int seconds = extractInt(packetHeader, 0);
+				long seconds = extractInt(packetHeader, 0);
+				long microseconds = extractInt(packetHeader, 4);
 				if(startPcapTime == -1) {
-					startPcapTime = seconds;
+					startPcapTime = seconds * 1000 + microseconds / 1000;
 					startClockTime = System.currentTimeMillis();
 				}
 				else {
-					long pcapElapsedTime = (seconds - startPcapTime) * 1000;		//in ms
+					long pcapElapsedTime = ((seconds * 1000 + microseconds / 1000) - startPcapTime);		//in ms
 					long clockElapsedTime = System.currentTimeMillis() - startClockTime;	//in ms
 					if(clockElapsedTime < pcapElapsedTime)
 						sleep(pcapElapsedTime - clockElapsedTime);
@@ -103,8 +104,8 @@ public class PcapReader {
 
 	public static void main(String[] args) {
 		PcapReader reader = new PcapReader();
-//		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
-		reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
+		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
+//		reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
 	}
 	
 }
