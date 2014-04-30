@@ -13,31 +13,33 @@ public class DataManager {
 	
 	private static Random random = new Random();
 	
-	public static synchronized LinkedList<Boolean> getBooleanList(String name) {
+	public static LinkedList<Boolean> getBooleanList(String name) {
 		return booleanMap.get(name);
 	}
 	
-	public static synchronized LinkedList<Double> getDoubleList(String name) {
+	public static LinkedList<Double> getDoubleList(String name) {
 		return doubleMap.get(name);
 	}
 	
-	public static synchronized LinkedList<Float> getFloatList(String name) {
+	public static LinkedList<Float> getFloatList(String name) {
 		if(!floatMap.containsKey(name))
 			floatMap.put(name, new LinkedList<Float>());		//Make it auto-generate if it doesn't exist.
 		return floatMap.get(name);
 	}
-	public static synchronized LinkedList<Float> getBoolFloatList(String name) {
+	public static LinkedList<Float> getBoolFloatList(String name) {
 		return boolfloatMap.get(name);
 	}
 	
 	public static void addFloatSample(String name, float value) {
 		LinkedList<Float> floatList = getFloatList(name);
-		floatList.add(value);
-		if(floatList.size() > 300)				//TODO: Make dynamic
-			floatList.removeFirst();			//Limit to 300 samples
+		synchronized(floatList) {
+			floatList.add(value);
+			if(floatList.size() > 300)				//TODO: Make dynamic
+				floatList.removeFirst();			//Limit to 300 samples
+		}
 	}
 	
-	public static synchronized void initDummyData(int numberOfSamples) {
+	public static void initDummyData(int numberOfSamples) {
 		for(int i = 0; i < 10; i++) {
 			String bName = "bool" + i;
 			String dName = "double" + i;
@@ -74,7 +76,7 @@ public class DataManager {
 		}
 	}
 	
-	public static synchronized void updateDummyData(int numberOfSamples) {
+	public static void updateDummyData(int numberOfSamples) {
 		for(int i = 0; i < 10; i++) {
 			String bName = "bool" + i;
 			String dName = "double" + i;
