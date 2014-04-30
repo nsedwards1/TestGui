@@ -16,6 +16,24 @@ public class DataManager {
 	
 	private static Random random = new Random();
 	
+	private static int numSamplesToKeep = 30;
+	
+	public static void setNumSamplesToKeep(int val) {
+		boolean needsCleanup = false;
+		if(numSamplesToKeep > val)
+			needsCleanup = true;			//We now have less samples than we did, so we need to clean up.
+		numSamplesToKeep = val;
+		
+		if(needsCleanup) {
+			for(LinkedList<Float> iter : floatMap.values()) {
+				synchronized(iter) {
+					while(iter.size() > numSamplesToKeep)
+						iter.removeFirst();
+				}
+			}
+		}
+	}
+	
 	public static LinkedList<Boolean> getBooleanList(String name) {
 		if(!booleanMap.containsKey(name))
 			booleanMap.put(name, new LinkedList<Boolean>());
@@ -63,8 +81,8 @@ public class DataManager {
 			
 			ret = scaleFloatVal(value, min, max);
 			floatList.add(ret);
-			if(floatList.size() > 300)				//TODO: Make dynamic
-				floatList.removeFirst();			//Limit to 300 samples
+			if(floatList.size() > numSamplesToKeep)
+				floatList.removeFirst();
 		}
 		
 		return ret;

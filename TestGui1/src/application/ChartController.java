@@ -122,19 +122,19 @@ public class ChartController {
     @FXML
     private void btn1MinClicked (ActionEvent event)
     {
-    	System.out.println("1 Min clicked.");
+    	DataManager.setNumSamplesToKeep(30);
     }
     
     @FXML
     private void btn5MinClicked (ActionEvent event)
     {
-    	System.out.println("5 Min clicked.");
+    	DataManager.setNumSamplesToKeep(150);
     }
     
     @FXML
     private void btn10MinClicked (ActionEvent event)
     {
-    	System.out.println("10 Min clicked.");
+    	DataManager.setNumSamplesToKeep(300);
     }
 
 }
