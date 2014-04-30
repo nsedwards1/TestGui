@@ -19,7 +19,8 @@ public class Helper {
 		
 		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
         floatSeries.setName(name);
-		float i=0;synchronized (valueList)
+		float i=0;
+		synchronized (valueList)
 		{
 			for (float f : valueList)
 			{
@@ -69,10 +70,13 @@ public class Helper {
 		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
         //floatSeries.setName("Float Series 1");
 		float i=0;
-		for (float f : valueList)
+		synchronized (valueList)
 		{
-			floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
-			i++;
+			for (float f : valueList)
+			{
+				floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
+				i++;
+			}
 		}
 		floatChartData.add(floatSeries);
 		
