@@ -22,12 +22,20 @@ public class DataManager {
 	}
 	
 	public static synchronized LinkedList<Float> getFloatList(String name) {
+		if(!floatMap.containsKey(name))
+			floatMap.put(name, new LinkedList<Float>());		//Make it auto-generate if it doesn't exist.
 		return floatMap.get(name);
 	}
 	public static synchronized LinkedList<Float> getBoolFloatList(String name) {
 		return boolfloatMap.get(name);
 	}
 	
+	public static void addFloatSample(String name, float value) {
+		LinkedList<Float> floatList = getFloatList(name);
+		floatList.add(value);
+		if(floatList.size() > 300)				//TODO: Make dynamic
+			floatList.removeFirst();			//Limit to 300 samples
+	}
 	
 	public static synchronized void initDummyData(int numberOfSamples) {
 		for(int i = 0; i < 10; i++) {

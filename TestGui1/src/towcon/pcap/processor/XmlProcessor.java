@@ -2,6 +2,8 @@ package towcon.pcap.processor;
 
 import java.util.HashSet;
 
+import application.DataManager;
+
 public class XmlProcessor {
 
 	private String lastPartialString = "";
@@ -43,8 +45,8 @@ public class XmlProcessor {
 			}
 		}
 
-		if(!outputString)
-			return;
+//		if(!outputString)
+//			return;
 		
 		
 //		System.out.print(val);
@@ -66,7 +68,8 @@ public class XmlProcessor {
 						e.printStackTrace();
 					}
 					
-					System.out.println(iter + " ==> " + dmName + " = " + dmValue);
+					DataManager.addFloatSample(dmName, dmValue);
+//					System.out.println(iter + " ==> " + dmName + " = " + dmValue);
 				}
 				else if(iter.endsWith("/>"))
 					System.out.print("");			//Do Nothing
