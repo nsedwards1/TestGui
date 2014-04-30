@@ -14,6 +14,9 @@ public class PcapReader {
 	private XmlProcessor input = new XmlProcessor();
 	private XmlProcessor output = new XmlProcessor();
 	
+	private long startClockTime = -1;
+	private long startPcapTime = -1;
+	
 	private void parseFile(String fileName) {
 		FileInputStream fis = null;
 		try {
@@ -31,7 +34,19 @@ public class PcapReader {
 				if(bytesRead != packetHeader.length)
 					return;
 				
-				int packetLength = getPacketLength(packetHeader);
+				int seconds = extractInt(packetHeader, 0);
+				if(startPcapTime == -1) {
+					startPcapTime = seconds;
+					startClockTime = System.currentTimeMillis();
+				}
+				else {
+					long pcapElapsedTime = (seconds - startPcapTime) * 1000;		//in ms
+					long clockElapsedTime = System.currentTimeMillis() - startClockTime;	//in ms
+					if(clockElapsedTime < pcapElapsedTime)
+						sleep(pcapElapsedTime - clockElapsedTime);
+				}
+				
+				int packetLength = extractInt(packetHeader, 8);
 				byte[] data = new byte[packetLength];
 				bytesRead = fis.read(data, 0, data.length);
 				if(bytesRead != data.length)
@@ -57,6 +72,14 @@ public class PcapReader {
 		}
 	}
 	
+	private void sleep(long l) {
+		try {
+			Thread.sleep(l);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void processPacket(TCPPacket p) {
 //		if(p.getSourcePort() != 5678)
 //			return;
@@ -69,10 +92,10 @@ public class PcapReader {
 			output.addData(p.getData());
 	}
 
-	private int getPacketLength(byte[] packetHeader) {
+	private int extractInt(byte[] packetHeader, int startByte) {
 		int ret = 0;
 		for(int i = 0; i < 4; i++) {
-			int curByte = (packetHeader[8 + i] & 0x000000ff);
+			int curByte = (packetHeader[startByte + i] & 0x000000ff);
 			ret |= curByte << (i * 8);
 		}
 		return ret;

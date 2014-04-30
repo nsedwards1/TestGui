@@ -55,8 +55,19 @@ public class XmlProcessor {
 			String temp = val.substring(dumb).trim();
 			String[] params = temp.split(" ");
 			for(String iter : params) {
-				if(iter.contains("="))
-					System.out.println(name + "." + iter.substring(0, iter.indexOf("=")));
+				if(iter.contains("=")) {
+					int equals = iter.indexOf("=");
+					String dmName = name + "." + iter.substring(0, equals);
+					String parseValue = iter.substring(equals + 2, iter.length() - 1);
+					float dmValue = -87;
+					try {
+						dmValue = Float.parseFloat(parseValue);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					System.out.println(iter + " ==> " + dmName + " = " + dmValue);
+				}
 				else if(iter.endsWith("/>"))
 					System.out.print("");			//Do Nothing
 				else
