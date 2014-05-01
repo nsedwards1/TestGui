@@ -61,26 +61,5 @@ public class Helper {
 		//floatChartData.add(floatSeries);
 		lineChart.setCreateSymbols(false);
 		lineChart.setData(floatChartData);
-	}
-	
-	public ObservableList<XYChart.Series<Float, Float>> getObsList (LinkedList<Float> valueList)
-	{
-		ObservableList<XYChart.Series<Float, Float>> floatChartData = FXCollections.observableArrayList();
-		
-		LineChart.Series<Float, Float> floatSeries = new LineChart.Series<Float, Float>();
-        //floatSeries.setName("Float Series 1");
-		float i=0;
-		synchronized (valueList)
-		{
-			for (float f : valueList)
-			{
-				floatSeries.getData().add(new XYChart.Data<Float, Float>(i, f));
-				i++;
-			}
-		}
-		floatChartData.add(floatSeries);
-		
-		return floatChartData;
-	}
-	
+	}	
 }
