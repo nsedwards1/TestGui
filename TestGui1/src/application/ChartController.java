@@ -9,9 +9,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 
 public class ChartController {
+	
+	@FXML
+	private TabPane tabPane;
 	
 	@FXML
 	private LineChart<Float, Float> pumpGraph, miscGraph, AHGraph, SHGraph, TowStbGraph, TowPrtGraph,
@@ -56,8 +60,330 @@ public class ChartController {
     private void updateGraph(ActionEvent event)
     {
 //    	DataManager.updateDummyData(10);
+    	
+    	String selected = tabPane.getSelectionModel().getSelectedItem().getText();
+    	
+    	switch(selected) {
+    	case "Pump Room":
+    		updatePumpRoom();
+    		break;
+    	case "Misc":
+            updateMisc();
+    		break;
+    	case "AH Winch":
+            updateAHWinch();
+    		break;
+    	case "SH Winch":
+            updateSHWinch();
+    		break;
+    	case "Tow Winch Stbd":
+            updateStbd();
+    		break;
+    	case "Tow Winch Port":
+            updatePort();
+    		break;
+		default:
+			break;
+    	}
+    	
+    }
+
+	private void updatePort() {
+		//TowPrt Winch Big Graph
+        List<LinkedList<Float>> TowPrtLL = new ArrayList<LinkedList<Float>>();
+        List<String> TowPrtList = new ArrayList<String>();
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.brake_on"));
+        TowPrtList.add("brake_on");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.coupling_in"));
+        TowPrtList.add("coupling_in");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_ang_vel"));
+        TowPrtList.add("drum_ang_vel");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_radius"));
+        TowPrtList.add("drum_radius");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_rot_pos"));
+        TowPrtList.add("drum_rot_pos");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_rpm"));
+        TowPrtList.add("drum_rpm");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_layer"));
+        TowPrtList.add("wire_layer");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_on_drum"));
+        TowPrtList.add("wire_length_on_drum");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_paid_out"));
+        TowPrtList.add("wire_length_paid_out");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_speed"));
+        TowPrtList.add("wire_speed");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn"));
+        TowPrtList.add("wire_turn");
+        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"));
+        TowPrtList.add("wire_turn_total");
+        h.assignListToChart(TowPrtLL, TowPrtGraph, TowPrtList);
+        //TowWinchPrt Sent Values
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_brake_on"),				TowWinchPrtBool1,  "cmd_brake_on");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_speed"),					TowWinchPrtBool2,  "cmd_speed");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_wire_length_paid_out"),	TowWinchPrtBool3,  "init_wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_total_wire_length"),		TowWinchPrtBool4,  "init_total_wire_length");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.reset_wirelengths"),			TowWinchPrtBool5,  "reset_wirelengths");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_diameter"),				TowWinchPrtBool6,  "wire_diameter");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_weigth"),				TowWinchPrtBool7,  "wire_weigth");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_tension"),				TowWinchPrtBool8,  "wire_tension");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.active_drum"),				TowWinchPrtBool9,  "active_drum");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_number"),		TowWinchPrtBool10, "config_kabelar_number");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_typeid"),		TowWinchPrtBool11, "config_kabelar_typeid");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_config_kabelar"),			TowWinchPrtBool12, "cmd_config_kabelar");
+        //TowWinchPrt Received Values
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.brake_on"),  			TowWinchPrtBool13, "brake_on");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.coupling_in"), 			TowWinchPrtBool14, "coupling_in");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_ang_vel"),			TowWinchPrtBool15, "drum_ang_vel");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_radius"),			TowWinchPrtBool16, "drum_radius");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_rot_pos"),			TowWinchPrtBool17, "drum_rot_pos");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_rpm"),  			TowWinchPrtBool18, "drum_rpm");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_layer"),			TowWinchPrtBool19, "wire_layer");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_length_on_drum"),	TowWinchPrtBool20, "wire_length_on_drum");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_length_paid_out"),	TowWinchPrtBool21, "wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_speed"),			TowWinchPrtBool22, "wire_speed");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn"),			TowWinchPrtBool23, "wire_turn");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"),		TowWinchPrtBool24, "wire_turn_total");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_port"),	TowWinchPrtBool25, "cmd_move_port_port");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_stb"),		TowWinchPrtBool26, "cmd_move_port_stb");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_port"),		TowWinchPrtBool27, "cmd_move_stb_port");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_stb"),		TowWinchPrtBool28, "cmd_move_stb_stb");
+	}
+
+	private void updateStbd() {
+		//TowStb Winch Big Graph
+        List<LinkedList<Float>> TowStbLL = new ArrayList<LinkedList<Float>>();
+        List<String> TowStbList = new ArrayList<String>();
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.brake_on"));
+        TowStbList.add("brake_on");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.coupling_in"));
+        TowStbList.add("coupling_in");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_ang_vel"));
+        TowStbList.add("drum_ang_vel");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_radius"));
+        TowStbList.add("drum_radius");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_rot_pos"));
+        TowStbList.add("drum_rot_pos");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_rpm"));
+        TowStbList.add("drum_rpm");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_layer"));
+        TowStbList.add("wire_layer");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_length_on_drum"));
+        TowStbList.add("wire_length_on_drum");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_length_paid_out"));
+        TowStbList.add("wire_length_paid_out");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_speed"));
+        TowStbList.add("wire_speed");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_turn"));
+        TowStbList.add("wire_turn");
+        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_turn_total"));
+        TowStbList.add("wire_turn_total");
+        h.assignListToChart(TowStbLL, TowStbGraph, TowStbList);
+        //TowWinchStb Sent Values
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.cmd_brake_on"),				TowWinchStbBool1,  "cmd_brake_on");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.cmd_speed"),					TowWinchStbBool2,  "cmd_speed");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.init_wire_length_paid_out"),	TowWinchStbBool3,  "init_wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.init_total_wire_length"),		TowWinchStbBool4,  "init_total_wire_length");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.reset_wirelengths"),			TowWinchStbBool5,  "reset_wirelengths");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.wire_diameter"),				TowWinchStbBool6,  "wire_diameter");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.wire_weigth"),				TowWinchStbBool7,  "wire_weigth");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.wire_tension"),				TowWinchStbBool8,  "wire_tension");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.active_drum"),				TowWinchStbBool9,  "active_drum");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.config_kabelar_number"),		TowWinchStbBool10, "config_kabelar_number");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.config_kabelar_typeid"),		TowWinchStbBool11, "config_kabelar_typeid");
+        h.assignListToChart(DataManager.getFloatList("TowWinchStb.cmd_config_kabelar"),			TowWinchStbBool12, "cmd_config_kabelar");
+        //TowWinchStb Received Values
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.brake_on"),  			TowWinchStbBool13, "brake_on");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.coupling_in"), 			TowWinchStbBool14, "coupling_in");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_ang_vel"),			TowWinchStbBool15, "drum_ang_vel");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_radius"),			TowWinchStbBool16, "drum_radius");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_rot_pos"),			TowWinchStbBool17, "drum_rot_pos");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_rpm"),  			TowWinchStbBool18, "drum_rpm");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_layer"),			TowWinchStbBool19, "wire_layer");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_length_on_drum"),	TowWinchStbBool20, "wire_length_on_drum");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_length_paid_out"),	TowWinchStbBool21, "wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_speed"),			TowWinchStbBool22, "wire_speed");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_turn"),			TowWinchStbBool23, "wire_turn");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_turn_total"),		TowWinchStbBool24, "wire_turn_total");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_port_port"),	TowWinchStbBool25, "cmd_move_port_port");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_port_stb"),		TowWinchStbBool26, "cmd_move_port_stb");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_stb_port"),		TowWinchStbBool27, "cmd_move_stb_port");
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_stb_stb"),		TowWinchStbBool28, "cmd_move_stb_stb");
+	}
+
+	private void updateSHWinch() {
+		//SW Winch Big Graph
+        List<LinkedList<Float>> SHLL = new ArrayList<LinkedList<Float>>();
+        List<String> SHList = new ArrayList<String>();
+        SHLL.add(DataManager.getFloatList("RRSHWinch.brake_on"));
+        SHList.add("brake_on");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.coupling_in"));
+        SHList.add("coupling_in");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_ang_vel"));
+        SHList.add("drum_ang_vel");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_radius"));
+        SHList.add("drum_radius");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_rot_pos"));
+        SHList.add("drum_rot_pos");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_rpm"));
+        SHList.add("drum_rpm");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_layer"));
+        SHList.add("wire_layer");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_length_on_drum"));
+        SHList.add("wire_length_on_drum");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_length_paid_out"));
+        SHList.add("wire_length_paid_out");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_speed"));
+        SHList.add("wire_speed");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_turn"));
+        SHList.add("wire_turn");
+        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_turn_total"));
+        SHList.add("wire_turn_total");
+        h.assignListToChart(SHLL, SHGraph, SHList);
+        //SHWinch Sent Values
+        h.assignListToChart(DataManager.getFloatList("SHWinch.cmd_brake_on"),				SHWinchBool1,  "cmd_brake_on");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.cmd_speed"),					SHWinchBool2,  "cmd_speed");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.init_wire_length_paid_out"),	SHWinchBool3,  "init_wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.init_total_wire_length"),		SHWinchBool4,  "init_total_wire_length");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.reset_wirelengths"),			SHWinchBool5,  "reset_wirelengths");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.wire_diameter"),				SHWinchBool6,  "wire_diameter");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.wire_weigth"),				SHWinchBool7,  "wire_weigth");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.wire_tension"),				SHWinchBool8,  "wire_tension");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.active_drum"),				SHWinchBool9,  "active_drum");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.config_kabelar_number"),		SHWinchBool10, "config_kabelar_number");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.config_kabelar_typeid"),		SHWinchBool11, "config_kabelar_typeid");
+        h.assignListToChart(DataManager.getFloatList("SHWinch.cmd_config_kabelar"),			SHWinchBool12, "cmd_config_kabelar");
+        //SHWinch Received Values
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.brake_on"),  			SHWinchBool13, "brake_on");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.coupling_in"), 			SHWinchBool14, "coupling_in");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_ang_vel"),			SHWinchBool15, "drum_ang_vel");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_radius"),			SHWinchBool16, "drum_radius");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_rot_pos"),			SHWinchBool17, "drum_rot_pos");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_rpm"),  			SHWinchBool18, "drum_rpm");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_layer"),			SHWinchBool19, "wire_layer");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_length_on_drum"),	SHWinchBool20, "wire_length_on_drum");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_length_paid_out"),	SHWinchBool21, "wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_speed"),			SHWinchBool22, "wire_speed");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_turn"),			SHWinchBool23, "wire_turn");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_turn_total"),		SHWinchBool24, "wire_turn_total");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_port_port"),	SHWinchBool25, "cmd_move_port_port");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_port_stb"),		SHWinchBool26, "cmd_move_port_stb");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_stb_port"),		SHWinchBool27, "cmd_move_stb_port");
+        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_stb_stb"),		SHWinchBool28, "cmd_move_stb_stb");
+	}
+
+	private void updateAHWinch() {
+		//AH Winch Big Graph
+        List<LinkedList<Float>> AHLL = new ArrayList<LinkedList<Float>>();
+        List<String> ahList = new ArrayList<String>();
+        AHLL.add(DataManager.getFloatList("RRAHWinch.brake_on"));
+        ahList.add("brake_on");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.coupling_in"));
+        ahList.add("coupling_in");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_ang_vel"));
+        ahList.add("drum_ang_vel");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_radius"));
+        ahList.add("drum_radius");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_rot_pos"));
+        ahList.add("drum_rot_pos");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_rpm"));
+        ahList.add("drum_rpm");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_layer"));
+        ahList.add("wire_layer");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_length_on_drum"));
+        ahList.add("wire_length_on_drum");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_length_paid_out"));
+        ahList.add("wire_length_paid_out");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_speed"));
+        ahList.add("wire_speed");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_turn"));
+        ahList.add("wire_turn");
+        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_turn_total"));
+        ahList.add("wire_turn_total");
+        h.assignListToChart(AHLL, AHGraph, ahList);
+        //AHWinch Sent Values
+        h.assignListToChart(DataManager.getFloatList("AHWinch.cmd_brake_on"),				AHWinchBool1,  "cmd_brake_on");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.cmd_speed"),					AHWinchBool2,  "cmd_speed");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.init_wire_length_paid_out"),	AHWinchBool3,  "init_wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.init_total_wire_length"),		AHWinchBool4,  "init_total_wire_length");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.reset_wirelengths"),			AHWinchBool5,  "reset_wirelengths");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.wire_diameter"),				AHWinchBool6,  "wire_diameter");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.wire_weigth"),				AHWinchBool7,  "wire_weigth");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.wire_tension"),				AHWinchBool8,  "wire_tension");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.active_drum"),				AHWinchBool9,  "active_drum");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.config_kabelar_number"),		AHWinchBool10, "config_kabelar_number");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.config_kabelar_typeid"),		AHWinchBool11, "config_kabelar_typeid");
+        h.assignListToChart(DataManager.getFloatList("AHWinch.cmd_config_kabelar"),			AHWinchBool12, "cmd_config_kabelar");
+        //AHWinch Received Values
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.brake_on"),  			AHWinchBool13, "brake_on");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.coupling_in"), 			AHWinchBool14, "coupling_in");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_ang_vel"),			AHWinchBool15, "drum_ang_vel");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_radius"),			AHWinchBool16, "drum_radius");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_rot_pos"),			AHWinchBool17, "drum_rot_pos");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_rpm"),  			AHWinchBool18, "drum_rpm");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_layer"),			AHWinchBool19, "wire_layer");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_length_on_drum"),	AHWinchBool20, "wire_length_on_drum");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_length_paid_out"),	AHWinchBool21, "wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_speed"),			AHWinchBool22, "wire_speed");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_turn"),			AHWinchBool23, "wire_turn");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_turn_total"),		AHWinchBool24, "wire_turn_total");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_port_port"),	AHWinchBool25, "cmd_move_port_port");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_port_stb"),		AHWinchBool26, "cmd_move_port_stb");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_stb_port"),		AHWinchBool27, "cmd_move_stb_port");
+        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_stb_stb"),		AHWinchBool28, "cmd_move_stb_stb");
+	}
+
+	private void updateMisc() {
+		//Misc Big Graph
+        List<LinkedList<Float>> miscLL = new ArrayList<LinkedList<Float>>();
+        List<String> miscNameList = new ArrayList<String>();
+        miscLL.add(DataManager.getFloatList("RRSJTPPanel.signal_on"));
+        miscNameList.add("signal_on");
+        miscLL.add(DataManager.getFloatList("RRSJTPPanel.cmd_popup_port"));
+        miscNameList.add("cmd_popup_port");
+        miscLL.add(DataManager.getFloatList("RRSJTPPanel.cmd_popup_stbd"));
+        miscNameList.add("cmd_popup_stbd");
+        miscLL.add(DataManager.getFloatList("RRSJTPPanel.ind_oil_temp"));
+        miscNameList.add("ind_oil_temp");
+        h.assignListToChart(miscLL, miscGraph, miscNameList);
         
-    	//Pump Room big Graph
+        //Misc Sent Values
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_cent_port"),  	miscBool1,  "cmd_1_cent_port");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_cent_stbd"),   	miscBool2,  "cmd_1_cent_stbd");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_sharkjaw"),  	miscBool3,  "cmd_1_sharkjaw");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_port"),   	miscBool4,  "cmd_1_tp_port");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_port_arm"),	miscBool5,  "cmd_1_tp_port_arm");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_stbd"),		miscBool6,  "cmd_1_tp_stbd");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_stbd_arm"),	miscBool7,  "cmd_1_tp_stbd_arm");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_cent_port"),   	miscBool8,  "cmd_2_cent_port");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_cent_stbd"),  	miscBool9,  "cmd_2_cent_stbd");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_sharkjaw"),   	miscBool10, "cmd_2_sharkjaw");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_port"),  	miscBool11, "cmd_2_tp_port");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_port_arm"),  miscBool12, "cmd_2_tp_port_arm");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_stbd"),  	miscBool13, "cmd_2_tp_stbd");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_stbd_arm"),  miscBool14, "cmd_2_tp_stbd_arm");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_hpu_start"),  	miscBool15, "cmd_hpu_start");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_hpu_stop"),   	miscBool16, "cmd_hpu_stop");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_popup_port"),  	miscBool17, "cmd_popup_port");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_popup_stbd"),  	miscBool18, "cmd_popup_stbd");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.signal_on"), 			miscBool19, "signal_on");
+        //Misc Received Values
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_load_configuration"),		miscBool20, "cmd_load_configuration");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_pause"), 					miscBool21, "cmd_pause");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_reset_configuration"),	miscBool22, "cmd_reset_configuration");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_manual_override"), 		miscBool23, "cmd_manual_override");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.reset_drums_from_towcon"), 	miscBool24, "reset_drums_from_towcon");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.fm_servo_failure"), 			miscBool25, "fm_servo_failure");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_filter"),  			miscBool26, "ind_oil_filter");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_level_low"), 			miscBool27, "ind_oil_level_low");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_pressure_low"),  		miscBool28, "ind_oil_pressure_low");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_lub_power_off"), 			miscBool29, "ind_lub_power_off");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_temp"),  				miscBool30, "ind_oil_temp");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.fm_emergency_stop_invoked"),  miscBool31, "fm_emergency_stop_invoked");
+        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.winch_system_config"), 		miscBool32, "winch_system_config");
+	}
+
+	private void updatePumpRoom() {
+		//Pump Room big Graph
         List<LinkedList<Float>> pumpLL = new ArrayList<LinkedList<Float>>();
         List<String> pumpNameList = new ArrayList<String>();    // This is not a good way to do this. Feel free to change or give suggestion on better way.
         pumpLL.add(DataManager.getFloatList("RRPumpRoom.longTimeTow_active"));
@@ -121,293 +447,7 @@ public class ChartController {
         h.assignListToChart(DataManager.getFloatList("PumpRoom.servo3_running"), pumpBool47, "servo3_running");
         h.assignListToChart(DataManager.getFloatList("PumpRoom.engineRoom_active"),  pumpBool48, "engineRoom_active");
         h.assignListToChart(DataManager.getFloatList("PumpRoom.filterPump_running"), pumpBool49, "filterPump_running");
-        
-        
-        //Misc Big Graph
-        List<LinkedList<Float>> miscLL = new ArrayList<LinkedList<Float>>();
-        List<String> miscNameList = new ArrayList<String>();
-        miscLL.add(DataManager.getFloatList("RRSJTPPanel.signal_on"));
-        miscNameList.add("signal_on");
-        miscLL.add(DataManager.getFloatList("RRSJTPPanel.cmd_popup_port"));
-        miscNameList.add("cmd_popup_port");
-        miscLL.add(DataManager.getFloatList("RRSJTPPanel.cmd_popup_stbd"));
-        miscNameList.add("cmd_popup_stbd");
-        miscLL.add(DataManager.getFloatList("RRSJTPPanel.ind_oil_temp"));
-        miscNameList.add("ind_oil_temp");
-        h.assignListToChart(miscLL, miscGraph, miscNameList);
-        
-        //Misc Sent Values
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_cent_port"),  	miscBool1,  "cmd_1_cent_port");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_cent_stbd"),   	miscBool2,  "cmd_1_cent_stbd");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_sharkjaw"),  	miscBool3,  "cmd_1_sharkjaw");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_port"),   	miscBool4,  "cmd_1_tp_port");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_port_arm"),	miscBool5,  "cmd_1_tp_port_arm");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_stbd"),		miscBool6,  "cmd_1_tp_stbd");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_1_tp_stbd_arm"),	miscBool7,  "cmd_1_tp_stbd_arm");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_cent_port"),   	miscBool8,  "cmd_2_cent_port");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_cent_stbd"),  	miscBool9,  "cmd_2_cent_stbd");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_sharkjaw"),   	miscBool10, "cmd_2_sharkjaw");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_port"),  	miscBool11, "cmd_2_tp_port");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_port_arm"),  miscBool12, "cmd_2_tp_port_arm");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_stbd"),  	miscBool13, "cmd_2_tp_stbd");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_2_tp_stbd_arm"),  miscBool14, "cmd_2_tp_stbd_arm");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_hpu_start"),  	miscBool15, "cmd_hpu_start");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_hpu_stop"),   	miscBool16, "cmd_hpu_stop");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_popup_port"),  	miscBool17, "cmd_popup_port");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_popup_stbd"),  	miscBool18, "cmd_popup_stbd");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.signal_on"), 			miscBool19, "signal_on");
-        //Misc Received Values
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_load_configuration"),		miscBool20, "cmd_load_configuration");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_pause"), 					miscBool21, "cmd_pause");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_reset_configuration"),	miscBool22, "cmd_reset_configuration");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.cmd_manual_override"), 		miscBool23, "cmd_manual_override");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.reset_drums_from_towcon"), 	miscBool24, "reset_drums_from_towcon");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.fm_servo_failure"), 			miscBool25, "fm_servo_failure");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_filter"),  			miscBool26, "ind_oil_filter");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_level_low"), 			miscBool27, "ind_oil_level_low");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_pressure_low"),  		miscBool28, "ind_oil_pressure_low");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_lub_power_off"), 			miscBool29, "ind_lub_power_off");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.ind_oil_temp"),  				miscBool30, "ind_oil_temp");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.fm_emergency_stop_invoked"),  miscBool31, "fm_emergency_stop_invoked");
-        h.assignListToChart(DataManager.getFloatList("RRSJTPPanel.winch_system_config"), 		miscBool32, "winch_system_config");
-        
-        //AH Winch Big Graph
-        List<LinkedList<Float>> AHLL = new ArrayList<LinkedList<Float>>();
-        List<String> ahList = new ArrayList<String>();
-        AHLL.add(DataManager.getFloatList("RRAHWinch.brake_on"));
-        ahList.add("brake_on");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.coupling_in"));
-        ahList.add("coupling_in");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_ang_vel"));
-        ahList.add("drum_ang_vel");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_radius"));
-        ahList.add("drum_radius");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_rot_pos"));
-        ahList.add("drum_rot_pos");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.drum_rpm"));
-        ahList.add("drum_rpm");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_layer"));
-        ahList.add("wire_layer");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_length_on_drum"));
-        ahList.add("wire_length_on_drum");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_length_paid_out"));
-        ahList.add("wire_length_paid_out");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_speed"));
-        ahList.add("wire_speed");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_turn"));
-        ahList.add("wire_turn");
-        AHLL.add(DataManager.getFloatList("RRAHWinch.wire_turn_total"));
-        ahList.add("wire_turn_total");
-        h.assignListToChart(AHLL, AHGraph, ahList);
-        //AHWinch Sent Values
-        h.assignListToChart(DataManager.getFloatList("AHWinch.cmd_brake_on"),				AHWinchBool1,  "cmd_brake_on");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.cmd_speed"),					AHWinchBool2,  "cmd_speed");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.init_wire_length_paid_out"),	AHWinchBool3,  "init_wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.init_total_wire_length"),		AHWinchBool4,  "init_total_wire_length");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.reset_wirelengths"),			AHWinchBool5,  "reset_wirelengths");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.wire_diameter"),				AHWinchBool6,  "wire_diameter");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.wire_weigth"),				AHWinchBool7,  "wire_weigth");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.wire_tension"),				AHWinchBool8,  "wire_tension");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.active_drum"),				AHWinchBool9,  "active_drum");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.config_kabelar_number"),		AHWinchBool10, "config_kabelar_number");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.config_kabelar_typeid"),		AHWinchBool11, "config_kabelar_typeid");
-        h.assignListToChart(DataManager.getFloatList("AHWinch.cmd_config_kabelar"),			AHWinchBool12, "cmd_config_kabelar");
-        //AHWinch Received Values
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.brake_on"),  			AHWinchBool13, "brake_on");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.coupling_in"), 			AHWinchBool14, "coupling_in");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_ang_vel"),			AHWinchBool15, "drum_ang_vel");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_radius"),			AHWinchBool16, "drum_radius");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_rot_pos"),			AHWinchBool17, "drum_rot_pos");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.drum_rpm"),  			AHWinchBool18, "drum_rpm");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_layer"),			AHWinchBool19, "wire_layer");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_length_on_drum"),	AHWinchBool20, "wire_length_on_drum");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_length_paid_out"),	AHWinchBool21, "wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_speed"),			AHWinchBool22, "wire_speed");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_turn"),			AHWinchBool23, "wire_turn");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinch.wire_turn_total"),		AHWinchBool24, "wire_turn_total");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_port_port"),	AHWinchBool25, "cmd_move_port_port");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_port_stb"),		AHWinchBool26, "cmd_move_port_stb");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_stb_port"),		AHWinchBool27, "cmd_move_stb_port");
-        h.assignListToChart(DataManager.getFloatList("RRAHWinchSpooler.cmd_move_stb_stb"),		AHWinchBool28, "cmd_move_stb_stb");
-        
-        //SW Winch Big Graph
-        List<LinkedList<Float>> SHLL = new ArrayList<LinkedList<Float>>();
-        List<String> SHList = new ArrayList<String>();
-        SHLL.add(DataManager.getFloatList("RRSHWinch.brake_on"));
-        SHList.add("brake_on");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.coupling_in"));
-        SHList.add("coupling_in");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_ang_vel"));
-        SHList.add("drum_ang_vel");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_radius"));
-        SHList.add("drum_radius");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_rot_pos"));
-        SHList.add("drum_rot_pos");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.drum_rpm"));
-        SHList.add("drum_rpm");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_layer"));
-        SHList.add("wire_layer");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_length_on_drum"));
-        SHList.add("wire_length_on_drum");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_length_paid_out"));
-        SHList.add("wire_length_paid_out");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_speed"));
-        SHList.add("wire_speed");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_turn"));
-        SHList.add("wire_turn");
-        SHLL.add(DataManager.getFloatList("RRSHWinch.wire_turn_total"));
-        SHList.add("wire_turn_total");
-        h.assignListToChart(SHLL, SHGraph, SHList);
-        //SHWinch Sent Values
-        h.assignListToChart(DataManager.getFloatList("SHWinch.cmd_brake_on"),				SHWinchBool1,  "cmd_brake_on");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.cmd_speed"),					SHWinchBool2,  "cmd_speed");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.init_wire_length_paid_out"),	SHWinchBool3,  "init_wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.init_total_wire_length"),		SHWinchBool4,  "init_total_wire_length");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.reset_wirelengths"),			SHWinchBool5,  "reset_wirelengths");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.wire_diameter"),				SHWinchBool6,  "wire_diameter");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.wire_weigth"),				SHWinchBool7,  "wire_weigth");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.wire_tension"),				SHWinchBool8,  "wire_tension");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.active_drum"),				SHWinchBool9,  "active_drum");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.config_kabelar_number"),		SHWinchBool10, "config_kabelar_number");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.config_kabelar_typeid"),		SHWinchBool11, "config_kabelar_typeid");
-        h.assignListToChart(DataManager.getFloatList("SHWinch.cmd_config_kabelar"),			SHWinchBool12, "cmd_config_kabelar");
-        //SHWinch Received Values
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.brake_on"),  			SHWinchBool13, "brake_on");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.coupling_in"), 			SHWinchBool14, "coupling_in");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_ang_vel"),			SHWinchBool15, "drum_ang_vel");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_radius"),			SHWinchBool16, "drum_radius");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_rot_pos"),			SHWinchBool17, "drum_rot_pos");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.drum_rpm"),  			SHWinchBool18, "drum_rpm");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_layer"),			SHWinchBool19, "wire_layer");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_length_on_drum"),	SHWinchBool20, "wire_length_on_drum");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_length_paid_out"),	SHWinchBool21, "wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_speed"),			SHWinchBool22, "wire_speed");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_turn"),			SHWinchBool23, "wire_turn");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinch.wire_turn_total"),		SHWinchBool24, "wire_turn_total");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_port_port"),	SHWinchBool25, "cmd_move_port_port");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_port_stb"),		SHWinchBool26, "cmd_move_port_stb");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_stb_port"),		SHWinchBool27, "cmd_move_stb_port");
-        h.assignListToChart(DataManager.getFloatList("RRSHWinchSpooler.cmd_move_stb_stb"),		SHWinchBool28, "cmd_move_stb_stb");
-
-        //TowStb Winch Big Graph
-        List<LinkedList<Float>> TowStbLL = new ArrayList<LinkedList<Float>>();
-        List<String> TowStbList = new ArrayList<String>();
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.brake_on"));
-        TowStbList.add("brake_on");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.coupling_in"));
-        TowStbList.add("coupling_in");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_ang_vel"));
-        TowStbList.add("drum_ang_vel");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_radius"));
-        TowStbList.add("drum_radius");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_rot_pos"));
-        TowStbList.add("drum_rot_pos");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.drum_rpm"));
-        TowStbList.add("drum_rpm");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_layer"));
-        TowStbList.add("wire_layer");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_length_on_drum"));
-        TowStbList.add("wire_length_on_drum");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_length_paid_out"));
-        TowStbList.add("wire_length_paid_out");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_speed"));
-        TowStbList.add("wire_speed");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_turn"));
-        TowStbList.add("wire_turn");
-        TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.wire_turn_total"));
-        TowStbList.add("wire_turn_total");
-        h.assignListToChart(TowStbLL, TowStbGraph, TowStbList);
-        //TowWinchStb Sent Values
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.cmd_brake_on"),				TowWinchStbBool1,  "cmd_brake_on");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.cmd_speed"),					TowWinchStbBool2,  "cmd_speed");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.init_wire_length_paid_out"),	TowWinchStbBool3,  "init_wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.init_total_wire_length"),		TowWinchStbBool4,  "init_total_wire_length");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.reset_wirelengths"),			TowWinchStbBool5,  "reset_wirelengths");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.wire_diameter"),				TowWinchStbBool6,  "wire_diameter");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.wire_weigth"),				TowWinchStbBool7,  "wire_weigth");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.wire_tension"),				TowWinchStbBool8,  "wire_tension");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.active_drum"),				TowWinchStbBool9,  "active_drum");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.config_kabelar_number"),		TowWinchStbBool10, "config_kabelar_number");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.config_kabelar_typeid"),		TowWinchStbBool11, "config_kabelar_typeid");
-        h.assignListToChart(DataManager.getFloatList("TowWinchStb.cmd_config_kabelar"),			TowWinchStbBool12, "cmd_config_kabelar");
-        //TowWinchStb Received Values
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.brake_on"),  			TowWinchStbBool13, "brake_on");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.coupling_in"), 			TowWinchStbBool14, "coupling_in");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_ang_vel"),			TowWinchStbBool15, "drum_ang_vel");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_radius"),			TowWinchStbBool16, "drum_radius");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_rot_pos"),			TowWinchStbBool17, "drum_rot_pos");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.drum_rpm"),  			TowWinchStbBool18, "drum_rpm");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_layer"),			TowWinchStbBool19, "wire_layer");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_length_on_drum"),	TowWinchStbBool20, "wire_length_on_drum");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_length_paid_out"),	TowWinchStbBool21, "wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_speed"),			TowWinchStbBool22, "wire_speed");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_turn"),			TowWinchStbBool23, "wire_turn");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStb.wire_turn_total"),		TowWinchStbBool24, "wire_turn_total");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_port_port"),	TowWinchStbBool25, "cmd_move_port_port");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_port_stb"),		TowWinchStbBool26, "cmd_move_port_stb");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_stb_port"),		TowWinchStbBool27, "cmd_move_stb_port");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchStbSpooler.cmd_move_stb_stb"),		TowWinchStbBool28, "cmd_move_stb_stb");
-        
-        //TowPrt Winch Big Graph
-        List<LinkedList<Float>> TowPrtLL = new ArrayList<LinkedList<Float>>();
-        List<String> TowPrtList = new ArrayList<String>();
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.brake_on"));
-        TowPrtList.add("brake_on");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.coupling_in"));
-        TowPrtList.add("coupling_in");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_ang_vel"));
-        TowPrtList.add("drum_ang_vel");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_radius"));
-        TowPrtList.add("drum_radius");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_rot_pos"));
-        TowPrtList.add("drum_rot_pos");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_rpm"));
-        TowPrtList.add("drum_rpm");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_layer"));
-        TowPrtList.add("wire_layer");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_on_drum"));
-        TowPrtList.add("wire_length_on_drum");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_paid_out"));
-        TowPrtList.add("wire_length_paid_out");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_speed"));
-        TowPrtList.add("wire_speed");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn"));
-        TowPrtList.add("wire_turn");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"));
-        TowPrtList.add("wire_turn_total");
-        h.assignListToChart(TowPrtLL, TowPrtGraph, TowPrtList);
-        //TowWinchPrt Sent Values
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_brake_on"),				TowWinchPrtBool1,  "cmd_brake_on");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_speed"),					TowWinchPrtBool2,  "cmd_speed");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_wire_length_paid_out"),	TowWinchPrtBool3,  "init_wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_total_wire_length"),		TowWinchPrtBool4,  "init_total_wire_length");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.reset_wirelengths"),			TowWinchPrtBool5,  "reset_wirelengths");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_diameter"),				TowWinchPrtBool6,  "wire_diameter");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_weigth"),				TowWinchPrtBool7,  "wire_weigth");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_tension"),				TowWinchPrtBool8,  "wire_tension");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.active_drum"),				TowWinchPrtBool9,  "active_drum");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_number"),		TowWinchPrtBool10, "config_kabelar_number");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_typeid"),		TowWinchPrtBool11, "config_kabelar_typeid");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_config_kabelar"),			TowWinchPrtBool12, "cmd_config_kabelar");
-        //TowWinchPrt Received Values
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.brake_on"),  			TowWinchPrtBool13, "brake_on");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.coupling_in"), 			TowWinchPrtBool14, "coupling_in");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_ang_vel"),			TowWinchPrtBool15, "drum_ang_vel");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_radius"),			TowWinchPrtBool16, "drum_radius");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_rot_pos"),			TowWinchPrtBool17, "drum_rot_pos");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.drum_rpm"),  			TowWinchPrtBool18, "drum_rpm");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_layer"),			TowWinchPrtBool19, "wire_layer");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_length_on_drum"),	TowWinchPrtBool20, "wire_length_on_drum");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_length_paid_out"),	TowWinchPrtBool21, "wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_speed"),			TowWinchPrtBool22, "wire_speed");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn"),			TowWinchPrtBool23, "wire_turn");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"),		TowWinchPrtBool24, "wire_turn_total");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_port"),	TowWinchPrtBool25, "cmd_move_port_port");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_stb"),		TowWinchPrtBool26, "cmd_move_port_stb");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_port"),		TowWinchPrtBool27, "cmd_move_stb_port");
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_stb"),		TowWinchPrtBool28, "cmd_move_stb_stb");
-        
-    }
+	}
     
     @FXML
     private void startClicked (ActionEvent event)
@@ -415,8 +455,8 @@ public class ChartController {
     	Thread t = new Thread() {
     	    public void run() {
     	        PcapReader reader = new PcapReader();
-//    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
-    	        reader.parseFile("C:\\Users\\User\\Downloads\\good.pcap");
+    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
+//    	        reader.parseFile("C:\\Users\\User\\Downloads\\good.pcap");
 //    	        reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
     	    }
     	};

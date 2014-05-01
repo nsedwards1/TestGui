@@ -12,7 +12,7 @@
   <!-- TODO Add Nodes -->
   <children>
     <Button fx:id="btnUpdate" layoutY="14.0" mnemonicParsing="false" onAction="#updateGraph" text="Update" AnchorPane.rightAnchor="14.0" />
-    <TabPane layoutY="46.0" prefHeight="933.0" prefWidth="1522.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+    <TabPane fx:id="tabPane" layoutY="46.0" prefHeight="933.0" prefWidth="1522.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
       <tabs>
         <Tab text="Pump Room">
           <content>
@@ -1625,7 +1625,7 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab text="Tow Winch Stb">
+        <Tab text="Tow Winch Stbd">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="374.0" prefWidth="822.0">
               <children>
