@@ -89,7 +89,7 @@ public class PcapReader {
 		
 		if(p.getSourcePort() == 5678)
 			input.addData(p.getData());
-		if(p.getSourcePort() == 1837)
+		if(p.getSourcePort() >= 1833 && p.getSourcePort() <= 1837)
 			output.addData(p.getData());
 	}
 
@@ -104,7 +104,8 @@ public class PcapReader {
 
 	public static void main(String[] args) {
 		PcapReader reader = new PcapReader();
-		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
+//		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
+		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
 //		reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
 	}
 	
