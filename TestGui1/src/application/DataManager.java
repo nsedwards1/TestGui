@@ -3,6 +3,7 @@ package application;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Set;
 
 public class DataManager {
 
@@ -13,6 +14,36 @@ public class DataManager {
 	
 	private static HashMap<String, Float> minFloatVals = new HashMap<String, Float>();
 	private static HashMap<String, Float> maxFloatVals = new HashMap<String, Float>();
+	
+	static {
+		maxFloatVals.put("wire_tension", 800.0F);
+		maxFloatVals.put("drum_rot_pos", 5.0F);
+		maxFloatVals.put("drum_radius", 2.0F);
+		maxFloatVals.put("winch_system_config", 10.0F);
+		maxFloatVals.put("wire_length_paid_out", 500.0F);
+		maxFloatVals.put("wire_turn_total", 12.0F);
+		maxFloatVals.put("wire_turn", 400.0F);
+		maxFloatVals.put("wire_layer", 15.0F);
+		
+		
+		minFloatVals.put("wire_length_on_drum", -500.0F);
+	}
+	
+	public static void printMinMaxValues() {
+		Set<String> minKeys = minFloatVals.keySet();
+		Set<String> maxKeys = maxFloatVals.keySet();
+		for(String iter : minKeys) {
+			if(maxKeys.contains(iter))
+				System.out.println(iter + " - min: " + minFloatVals.get(iter) + "   max: " + maxFloatVals.get(iter));
+			else
+				System.out.println(iter + " - min: " + minFloatVals.get(iter));
+		}
+		
+		for(String iter : maxKeys) {
+			if(!minKeys.contains(iter))
+				System.out.println(iter + " - max: " + maxFloatVals.get(iter));
+		}
+	}
 	
 	private static Random random = new Random();
 	
@@ -62,22 +93,23 @@ public class DataManager {
 		LinkedList<Float> floatList = getFloatList(name);
 		float min = 0.0f;
 		float max = 1.0f;
-		if(minFloatVals.containsKey(name))
-			min = minFloatVals.get(name);
-		if(maxFloatVals.containsKey(name))
-			max = maxFloatVals.get(name);
+		String subType = name.substring(name.indexOf(".") + 1);
+		if(minFloatVals.containsKey(subType))
+			min = minFloatVals.get(subType);
+		if(maxFloatVals.containsKey(subType))
+			max = maxFloatVals.get(subType);
 		synchronized(floatList) {
 			
-			if(value > max) {
-				rescaleAll(floatList, min, max, value);
-				max = value;
-				maxFloatVals.put(name, max);
-			}
-			if(value < min) {
-				rescaleAll(floatList, min, max, value);
-				min = value;
-				minFloatVals.put(name, min);
-			}
+//			if(value > max) {
+//				rescaleAll(floatList, min, max, value);
+//				max = value;
+//				maxFloatVals.put(subType, max);
+//			}
+//			if(value < min) {
+//				rescaleAll(floatList, min, max, value);
+//				min = value;
+//				minFloatVals.put(subType, min);
+//			}
 			
 			ret = scaleFloatVal(value, min, max);
 			floatList.add(ret);
@@ -89,8 +121,8 @@ public class DataManager {
 	}
 	
 	private static void rescaleAll(LinkedList<Float> floatList, float min, float max, float value) {
-		float multiplier = 1.0f;
-		float offset = 0.0f;
+		double multiplier = 1.0f;
+		double offset = 0.0f;
 		if(value < min) {
 			multiplier = (max - min) / (max - value);
 			offset = scaleFloatVal(min, value, max);		//This is what the min used to be
@@ -104,13 +136,17 @@ public class DataManager {
 		}
 		
 		for(int i = 0; i < floatList.size(); i++) {
-			float newValue = floatList.get(i) * multiplier + offset;
+			float newValue = (float)((double)floatList.get(i) * multiplier + offset);
 			newValue = Math.min(Math.max(newValue, 0.0f), 1.0f);
 			floatList.set(i, newValue);
 		}
 	}
 
 	private static float scaleFloatVal(float val, float min, float max) {
+		if(val > max)
+			return 1.0f;
+		else if(val < min)
+			return 0.0f;
 		return (val - min) / (max - min);
 	}
 	

@@ -455,8 +455,8 @@ public class ChartController {
     	Thread t = new Thread() {
     	    public void run() {
     	        PcapReader reader = new PcapReader();
-//    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
-    	        reader.parseFile("C:\\Users\\User\\Downloads\\good.pcap");
+    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
+//    	        reader.parseFile("C:\\Users\\User\\Downloads\\good.pcap");
 //    	        reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
     	    }
     	};
@@ -475,7 +475,7 @@ public class ChartController {
     	            });
     	        	
     	        	try {
-						Thread.sleep(500);
+						Thread.sleep(333);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

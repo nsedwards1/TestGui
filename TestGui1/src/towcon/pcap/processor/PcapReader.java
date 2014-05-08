@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import application.DataManager;
 import net.sourceforge.jpcap.net.LinkLayers;
 import net.sourceforge.jpcap.net.Packet;
 import net.sourceforge.jpcap.net.PacketFactory;
@@ -104,9 +105,11 @@ public class PcapReader {
 
 	public static void main(String[] args) {
 		PcapReader reader = new PcapReader();
-//		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
-		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
+		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
+//		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
 //		reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
+		
+		DataManager.printMinMaxValues();
 	}
 	
 }
