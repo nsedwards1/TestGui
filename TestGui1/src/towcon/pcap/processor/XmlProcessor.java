@@ -10,13 +10,13 @@ public class XmlProcessor {
 	private HashSet<String> names = new HashSet<String>();
 	private boolean outputString = false;
 	
-	public void addData(byte[] data) {
+	public void addData(byte[] data, float curTime) {
 		String currentString = new String(data);
 		String[] splitter = currentString.split("\n");
 		if(splitter.length > 0) {
 			splitter[0] = lastPartialString + splitter[0];
 			for(int i = 0; i < splitter.length; i++) {
-				processString(splitter[i]);
+				processString(splitter[i], curTime);
 			}
 			if(splitter[splitter.length - 1].endsWith("/>"))
 				lastPartialString = "";
@@ -27,7 +27,7 @@ public class XmlProcessor {
 	
 	private String name = "";
 
-	private void processString(String val) {
+	private void processString(String val, float curTime) {
 		if(!val.endsWith("/>"))
 			return;
 		
@@ -80,7 +80,8 @@ public class XmlProcessor {
 						e.printStackTrace();
 					}
 					
-					float scaledValue = DataManager.addFloatSample(dmName, dmValue);
+					DataManager.addFloatSample(dmName, dmValue, curTime);
+//					float scaledValue = DataManager.addFloatSample(dmName, dmValue);
 //					System.out.println(iter + " ==> " + dmName + " = " + dmValue + " scaled: " + scaledValue);
 				}
 				else if(iter.endsWith("/>"))

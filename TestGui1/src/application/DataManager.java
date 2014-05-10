@@ -5,11 +5,13 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 
+import javafx.scene.chart.XYChart;
+
 public class DataManager {
 
 	private static HashMap<String, LinkedList<Boolean>> booleanMap = new HashMap<String, LinkedList<Boolean>>();
 	private static HashMap<String, LinkedList<Double>> doubleMap = new HashMap<String, LinkedList<Double>>();
-	private static HashMap<String, LinkedList<Float>> floatMap = new HashMap<String, LinkedList<Float>>();
+	private static HashMap<String, LinkedList<XYChart.Data<Float, Float>>> floatMap = new HashMap<String, LinkedList<XYChart.Data<Float, Float>>>();
 	private static HashMap<String, LinkedList<Float>> boolfloatMap = new HashMap<String, LinkedList<Float>>();
 	
 	private static HashMap<String, Float> minFloatVals = new HashMap<String, Float>();
@@ -50,22 +52,21 @@ public class DataManager {
 	
 	private static Random random = new Random();
 	
-	private static int numSamplesToKeep = 30;
+	private static float numSecondsToKeep = 10;
 	
-	public static void setNumSamplesToKeep(int val) {
-		boolean needsCleanup = false;
-		if(numSamplesToKeep > val)
-			needsCleanup = true;			//We now have less samples than we did, so we need to clean up.
-		numSamplesToKeep = val;
+	public static void setNumSecondsToKeep(float val) {
+//		boolean needsCleanup = false;
+//		if(numSecondsToKeep > val)
+//			needsCleanup = true;			//We now have less samples than we did, so we need to clean up.
+		numSecondsToKeep = val;
 		
-		if(needsCleanup) {
-			for(LinkedList<Float> iter : floatMap.values()) {
-				synchronized(iter) {
-					while(iter.size() > numSamplesToKeep)
-						iter.removeFirst();
-				}
-			}
-		}
+//		if(needsCleanup) {
+//			for(LinkedList<XYChart.Data<Float, Float>> iter : floatMap.values()) {
+//				synchronized(iter) {
+//					cleanupStart(floatList, timeSeconds);
+//				}
+//			}
+//		}
 	}
 	
 	public static LinkedList<Boolean> getBooleanList(String name) {
@@ -80,9 +81,9 @@ public class DataManager {
 		return doubleMap.get(name);
 	}
 	
-	public static LinkedList<Float> getFloatList(String name) {
+	public static LinkedList<XYChart.Data<Float, Float>> getFloatList(String name) {
 		if(!floatMap.containsKey(name))
-			floatMap.put(name, new LinkedList<Float>());		//Make it auto-generate if it doesn't exist.
+			floatMap.put(name, new LinkedList<XYChart.Data<Float, Float>>());		//Make it auto-generate if it doesn't exist.
 		return floatMap.get(name);
 	}
 	public static LinkedList<Float> getBoolFloatList(String name) {
@@ -91,11 +92,12 @@ public class DataManager {
 		return boolfloatMap.get(name);
 	}
 	
-	public static float addFloatSample(String name, float value) {
+	public static void addFloatSample(String name, float value, float timeSeconds) {
 		float ret = -1.0f;
-		LinkedList<Float> floatList = getFloatList(name);
-		float min = 0.0f;
-		float max = 1.0f;
+		LinkedList<XYChart.Data<Float, Float>> floatList = getFloatList(name);
+		float min = -0.1f;
+		float max = 1.1f;
+		
 		String subType = name.substring(name.indexOf(".") + 1);
 		if(minFloatVals.containsKey(subType))
 			min = minFloatVals.get(subType);
@@ -115,13 +117,19 @@ public class DataManager {
 //			}
 			
 			ret = scaleFloatVal(value, min, max);
-			floatList.add(ret);
-			if(floatList.size() > numSamplesToKeep)
-				floatList.removeFirst();
+			floatList.add(new XYChart.Data<Float, Float>(timeSeconds, ret));
+			cleanupStart(floatList, timeSeconds);
 		}
 		
-		return ret;
+//		return ret;
 	}
+
+	private static void cleanupStart(LinkedList<XYChart.Data<Float, Float>> floatList, float timeSeconds) {
+		while(floatList.size() > 10 && floatList.getFirst().getXValue() < (timeSeconds - numSecondsToKeep))
+			floatList.removeFirst();
+	}
+	
+	
 	
 	private static void rescaleAll(LinkedList<Float> floatList, float min, float max, float value) {
 		double multiplier = 1.0f;
@@ -185,7 +193,7 @@ public class DataManager {
 			
 			booleanMap.put(bName, bList);
 			doubleMap.put(dName, dList);
-			floatMap.put(fName, fList);
+//			floatMap.put(fName, fList);
 			boolfloatMap.put(bfName, bfList);
 		}
 	}
@@ -198,7 +206,7 @@ public class DataManager {
 			String bfName = "boolfloat" + i;
 			LinkedList<Boolean> bList = booleanMap.get(bName);
 			LinkedList<Double> dList = doubleMap.get(dName);
-			LinkedList<Float> fList = floatMap.get(fName);
+//			LinkedList<Float> fList = floatMap.get(fName);
 			LinkedList<Float> bfList = boolfloatMap.get(bfName);
 			
 			bList.add(false);
@@ -216,11 +224,11 @@ public class DataManager {
 					bfList.add(0f);
 				}
 				dList.add(val * 60);			// Value between 0 and 60
-				fList.add((float) (val * 60));			// Value between 0 and 60
+//				fList.add((float) (val * 60));			// Value between 0 and 60
 				
 				bList.removeFirst();
 				dList.removeFirst();
-				fList.removeFirst();
+//				fList.removeFirst();
 				bfList.removeFirst();
 			}
 			

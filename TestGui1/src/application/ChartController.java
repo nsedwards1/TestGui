@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 
@@ -90,7 +91,7 @@ public class ChartController {
 
 	private void updatePort() {
 		//TowPrt Winch Big Graph
-        List<LinkedList<Float>> TowPrtLL = new ArrayList<LinkedList<Float>>();
+        List<LinkedList<XYChart.Data<Float, Float>>> TowPrtLL = new ArrayList<LinkedList<XYChart.Data<Float, Float>>>();
         List<String> TowPrtList = new ArrayList<String>();
         TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.brake_on"));
         TowPrtList.add("brake_on");
@@ -120,16 +121,16 @@ public class ChartController {
         //TowWinchPrt Sent Values
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_brake_on"),				TowWinchPrtBool1,  "cmd_brake_on             ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_speed"),					TowWinchPrtBool2,  "cmd_speed                ");
-        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_wire_length_paid_out"),	TowWinchPrtBool3,  "init_wire_length_paid_out");
-        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_total_wire_length"),		TowWinchPrtBool4,  "init_total_wire_length   ");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_wire_length_paid_out"),	TowWinchPrtBool3,  "init_wire_length_paid_out");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_total_wire_length"),		TowWinchPrtBool4,  "init_total_wire_length   ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.reset_wirelengths"),			TowWinchPrtBool5,  "reset_wirelengths        ");
-        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_diameter"),				TowWinchPrtBool6,  "wire_diameter            ");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_diameter"),				TowWinchPrtBool6,  "wire_diameter            ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_weigth"),				TowWinchPrtBool7,  "wire_weigth              ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_tension"),				TowWinchPrtBool8,  "wire_tension             ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.active_drum"),				TowWinchPrtBool9,  "active_drum              ");
-        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_number"),		TowWinchPrtBool10, "config_kabelar_number    ");
-        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_typeid"),		TowWinchPrtBool11, "config_kabelar_typeid    ");
-        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_config_kabelar"),			TowWinchPrtBool12, "cmd_config_kabelar       ");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_number"),		TowWinchPrtBool10, "config_kabelar_number    ");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_typeid"),		TowWinchPrtBool11, "config_kabelar_typeid    ");
+        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_config_kabelar"),			TowWinchPrtBool12, "cmd_config_kabelar       ");
         
         
         //TowWinchPrt Received Values
@@ -145,15 +146,15 @@ public class ChartController {
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_speed"),			TowWinchPrtBool22, "wire_speed               "); 
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn"),			TowWinchPrtBool23, "wire_turn                "); 
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"),		TowWinchPrtBool24, "wire_turn_total          "); 
-        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_port"),	TowWinchPrtBool25, "cmd_move_port_port       "); 
-        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_stb"),		TowWinchPrtBool26, "cmd_move_port_stb        "); 
-        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_port"),		TowWinchPrtBool27, "cmd_move_stb_port        "); 
-        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_stb"),		TowWinchPrtBool28, "cmd_move_stb_stb         "); 
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_port"),	TowWinchPrtBool25, "cmd_move_port_port       "); 
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_stb"),		TowWinchPrtBool26, "cmd_move_port_stb        "); 
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_port"),		TowWinchPrtBool27, "cmd_move_stb_port        "); 
+        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_stb"),		TowWinchPrtBool28, "cmd_move_stb_stb         "); 
 	}
 
 	private void updateStbd() {
 		//TowStb Winch Big Graph
-        List<LinkedList<Float>> TowStbLL = new ArrayList<LinkedList<Float>>();
+        List<LinkedList<XYChart.Data<Float, Float>>> TowStbLL = new ArrayList<LinkedList<XYChart.Data<Float, Float>>>();
         List<String> TowStbList = new ArrayList<String>();
         TowStbLL.add(DataManager.getFloatList("RRTowWinchStb.brake_on"));
         TowStbList.add("brake_on");
@@ -214,7 +215,7 @@ public class ChartController {
 
 	private void updateSHWinch() {
 		//SW Winch Big Graph
-        List<LinkedList<Float>> SHLL = new ArrayList<LinkedList<Float>>();
+        List<LinkedList<XYChart.Data<Float, Float>>> SHLL = new ArrayList<LinkedList<XYChart.Data<Float, Float>>>();
         List<String> SHList = new ArrayList<String>();
         SHLL.add(DataManager.getFloatList("RRSHWinch.brake_on"));
         SHList.add("brake_on");
@@ -275,7 +276,7 @@ public class ChartController {
 
 	private void updateAHWinch() {
 		//AH Winch Big Graph
-        List<LinkedList<Float>> AHLL = new ArrayList<LinkedList<Float>>();
+        List<LinkedList<XYChart.Data<Float, Float>>> AHLL = new ArrayList<LinkedList<XYChart.Data<Float, Float>>>();
         List<String> ahList = new ArrayList<String>();
         AHLL.add(DataManager.getFloatList("RRAHWinch.brake_on"));
         ahList.add("brake_on");
@@ -336,7 +337,7 @@ public class ChartController {
 
 	private void updateMisc() {
 		//Misc Big Graph
-        List<LinkedList<Float>> miscLL = new ArrayList<LinkedList<Float>>();
+        List<LinkedList<XYChart.Data<Float, Float>>> miscLL = new ArrayList<LinkedList<XYChart.Data<Float, Float>>>();
         List<String> miscNameList = new ArrayList<String>();
         miscLL.add(DataManager.getFloatList("RRSJTPPanel.signal_on"));
         miscNameList.add("signal_on");
@@ -386,7 +387,7 @@ public class ChartController {
 
 	private void updatePumpRoom() {
 		//Pump Room big Graph
-        List<LinkedList<Float>> pumpLL = new ArrayList<LinkedList<Float>>();
+        List<LinkedList<XYChart.Data<Float, Float>>> pumpLL = new ArrayList<LinkedList<XYChart.Data<Float, Float>>>();
         List<String> pumpNameList = new ArrayList<String>();    // This is not a good way to do this. Feel free to change or give suggestion on better way.
         pumpLL.add(DataManager.getFloatList("RRPumpRoom.longTimeTow_active"));
         pumpNameList.add("longTimeTow_active");
@@ -450,6 +451,8 @@ public class ChartController {
         h.assignListToChart(DataManager.getFloatList("PumpRoom.engineRoom_active"),  pumpBool48,"engineRoom_active        ");
         h.assignListToChart(DataManager.getFloatList("PumpRoom.filterPump_running"), pumpBool49,"filterPump_running       ");
 	}
+	
+	private boolean isWaiting = false;
     
     @FXML
     private void startClicked (ActionEvent event)
@@ -467,28 +470,33 @@ public class ChartController {
     	t.setDaemon(true);
     	t.start();
     	
-//    	Thread t2 = new Thread() {
-//    	    public void run() {
-//    	        while(true) {
-//    	        	Platform.runLater(new Runnable() {
-//    	                @Override
-//    	                public void run() {
-//    	                	updateGraph(null);
-//    	                }
-//    	            });
-//    	        	
-//    	        	try {
-//						Thread.sleep(333);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//    	        }
-//    	    }
-//    	};
-//    	t2.setName("Screen-Updater Thread");
-//    	t2.setDaemon(true);
-//    	t2.start();
+    	Thread t2 = new Thread() {
+    	    public void run() {
+    	        while(true) {
+    	        	
+    	        	if(!isWaiting) {
+    	        		isWaiting = true;
+    	        		Platform.runLater(new Runnable() {
+        	                @Override
+        	                public void run() {
+        	                	updateGraph(null);
+        	                	isWaiting = false;
+        	                }
+        	            });
+    	        	}
+    	        	
+    	        	try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+    	        }
+    	    }
+    	};
+    	t2.setName("Screen-Updater Thread");
+    	t2.setDaemon(true);
+    	t2.start();
     }
     
     @FXML
@@ -501,19 +509,19 @@ public class ChartController {
     @FXML
     private void btn1MinClicked (ActionEvent event)
     {
-    	DataManager.setNumSamplesToKeep(30);
+    	DataManager.setNumSecondsToKeep(60);
     }
     
     @FXML
     private void btn5MinClicked (ActionEvent event)
     {
-    	DataManager.setNumSamplesToKeep(150);
+    	DataManager.setNumSecondsToKeep(5 * 60);
     }
     
     @FXML
     private void btn10MinClicked (ActionEvent event)
     {
-    	DataManager.setNumSamplesToKeep(1500);
+    	DataManager.setNumSecondsToKeep(10 * 60);
     }
 
 }

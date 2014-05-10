@@ -37,6 +37,8 @@ public class PcapReader {
 				if(bytesRead != packetHeader.length)
 					return;
 				
+				float curTime = 0.0f;		//Current time in seconds (partial seconds after decimal point
+				
 				long seconds = extractInt(packetHeader, 0);
 				long microseconds = extractInt(packetHeader, 4);
 				if(startPcapTime == -1) {
@@ -45,15 +47,17 @@ public class PcapReader {
 				}
 				else {
 					long pcapElapsedTime = ((seconds * 1000 + microseconds / 1000) - startPcapTime);		//in ms
-					long clockElapsedTime = System.currentTimeMillis() - startClockTime;	//in ms
-//					if(clockElapsedTime < pcapElapsedTime)
-//						sleep(pcapElapsedTime - clockElapsedTime);
-//					
+					long clockElapsedTime = (System.currentTimeMillis() - startClockTime) * 5;	//in ms
+					if(clockElapsedTime < pcapElapsedTime)
+						sleep(pcapElapsedTime - clockElapsedTime);
+					
 //					counter++;
 //					if(counter > 10) {
 //						sleep(10);
 //						counter = 0;
 //					}
+					
+					curTime = (float)(pcapElapsedTime) / 1000.0F;
 				}
 				
 				int packetLength = extractInt(packetHeader, 8);
@@ -66,7 +70,7 @@ public class PcapReader {
 //				System.out.println(p);
 				
 				if(p instanceof TCPPacket) {
-					processPacket((TCPPacket)p);
+					processPacket((TCPPacket)p, curTime);
 				}
 			}
 			
@@ -90,16 +94,16 @@ public class PcapReader {
 		}
 	}
 
-	private void processPacket(TCPPacket p) {
+	private void processPacket(TCPPacket p, float curTime) {
 //		if(p.getSourcePort() != 5678)
 //			return;
 		if(p.getData().length < 10)
 			return;
 		
 		if(p.getSourceAddress().equals("192.168.111.13"))
-			input.addData(p.getData());
+			input.addData(p.getData(), curTime);
 		if(p.getSourceAddress().equals("192.168.111.23"))
-			output.addData(p.getData());
+			output.addData(p.getData(), curTime);
 	}
 
 	private int extractInt(byte[] packetHeader, int startByte) {
