@@ -28,6 +28,8 @@ public class PcapReader {
 			if(bytesRead < fileHeader.length)
 				return;
 			
+			int counter = 0;
+			
 			while(true) {
 				
 				byte[] packetHeader = new byte[16];
@@ -44,8 +46,14 @@ public class PcapReader {
 				else {
 					long pcapElapsedTime = ((seconds * 1000 + microseconds / 1000) - startPcapTime);		//in ms
 					long clockElapsedTime = System.currentTimeMillis() - startClockTime;	//in ms
-					if(clockElapsedTime < pcapElapsedTime)
-						sleep(pcapElapsedTime - clockElapsedTime);
+//					if(clockElapsedTime < pcapElapsedTime)
+//						sleep(pcapElapsedTime - clockElapsedTime);
+//					
+//					counter++;
+//					if(counter > 10) {
+//						sleep(10);
+//						counter = 0;
+//					}
 				}
 				
 				int packetLength = extractInt(packetHeader, 8);
@@ -88,9 +96,9 @@ public class PcapReader {
 		if(p.getData().length < 10)
 			return;
 		
-		if(p.getSourcePort() == 5678)
+		if(p.getSourceAddress().equals("192.168.111.13"))
 			input.addData(p.getData());
-		if(p.getSourcePort() >= 1833 && p.getSourcePort() <= 1837)
+		if(p.getSourceAddress().equals("192.168.111.23"))
 			output.addData(p.getData());
 	}
 
@@ -105,8 +113,8 @@ public class PcapReader {
 
 	public static void main(String[] args) {
 		PcapReader reader = new PcapReader();
-		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\winch_misbehave_130813_2.pcap");
-//		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
+//		reader.parseFile("C:\\swire\\towcon_1399694024446_Crashed.pcap");
+		reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
 //		reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
 		
 		DataManager.printMinMaxValues();

@@ -33,7 +33,7 @@ public class Helper {
 		lineChart.setData(floatChartData);
 	}
 
-	//Add a single Linked List to the chart
+	//Add multiple Linked Lists to the chart
 	public void assignListToChart(List<LinkedList<Float>> valueListArray, 
 				LineChart<Float, Float> lineChart,
 				List<String> names)

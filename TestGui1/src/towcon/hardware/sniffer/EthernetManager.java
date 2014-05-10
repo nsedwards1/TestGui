@@ -48,21 +48,25 @@ public class EthernetManager {
 	
 	private void parseDataToWavs() throws IOException {
 		OutputStream out = null;
-		if(!"".equals(testFileName)) {
-			try {
-				out = new FileOutputStream(testFileName);
-				out.write(pcapGlobalHeader);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-				//DON'T RETURN HERE! FAILED FILE DOESN'T MEAN WE CAN'T PROCESS STUFF!!!
-			}
-		}
+		long fileOpenTime = 0;
 		
 		
 		while(!exitFlag)
 		{
 			
 			try {
+				
+				if(!"".equals(testFileName) && out == null) {
+					try {
+						fileOpenTime = System.currentTimeMillis();
+						out = new FileOutputStream(testFileName + "_" + fileOpenTime + ".pcap");
+						out.write(pcapGlobalHeader);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+						//DON'T RETURN HERE! FAILED FILE DOESN'T MEAN WE CAN'T PROCESS STUFF!!!
+					}
+				}
+				
 				
 				byte[] data = splitter.getNextEthernetPacket();
 				if(data == null)
@@ -86,12 +90,19 @@ public class EthernetManager {
 				
 				if(out != null) {
 					int dataLength = data.length;
-					
-					out.write(intToByteArray(0));		//Timestamp seconds
-					out.write(intToByteArray(0));		//Timestamp ms
+					long curTime = System.currentTimeMillis();
+					int seconds = (int)(curTime / 1000);
+					int ms = (int)(curTime % 1000);
+					out.write(intToByteArray(seconds));		//Timestamp seconds
+					out.write(intToByteArray(ms * 1000));			//Timestamp microSeconds (microseconds = ms * 1000)
 					out.write(intToByteArray(dataLength));
 					out.write(intToByteArray(dataLength));
 					out.write(data);
+				}
+				
+				if(System.currentTimeMillis() - fileOpenTime > 5 * 60 * 1000) {		//New file every 5 minutes (5*60 seconds)
+					out.close();
+					out = null;
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

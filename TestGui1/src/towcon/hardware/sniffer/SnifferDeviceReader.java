@@ -30,7 +30,8 @@ public class SnifferDeviceReader {
 		
 		manager = new EthernetManager();
 		if(snifferTestMode)
-			manager.setTestFileName("C:\\test\\liveSniffing.pcap");
+//			manager.setTestFileName("C:\\swire\\towcon");
+			manager.setTestFileName("sniffing\\towcon");
 		numBytesToRead = 10;
 		
 		if(manager != null)

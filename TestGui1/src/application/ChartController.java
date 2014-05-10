@@ -94,42 +94,44 @@ public class ChartController {
         List<String> TowPrtList = new ArrayList<String>();
         TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.brake_on"));
         TowPrtList.add("brake_on");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.coupling_in"));
-        TowPrtList.add("coupling_in");
+//        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.coupling_in"));
+//        TowPrtList.add("coupling_in");
         TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_ang_vel"));
         TowPrtList.add("drum_ang_vel");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_radius"));
-        TowPrtList.add("drum_radius");
+//        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_radius"));
+//        TowPrtList.add("drum_radius");
         TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_rot_pos"));
         TowPrtList.add("drum_rot_pos");
         TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.drum_rpm"));
         TowPrtList.add("drum_rpm");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_layer"));
-        TowPrtList.add("wire_layer");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_on_drum"));
-        TowPrtList.add("wire_length_on_drum");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_paid_out"));
-        TowPrtList.add("wire_length_paid_out");
+//        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_layer"));
+//        TowPrtList.add("wire_layer");
+//        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_on_drum"));
+//        TowPrtList.add("wire_length_on_drum");
+//        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_length_paid_out"));
+//        TowPrtList.add("wire_length_paid_out");
         TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_speed"));
         TowPrtList.add("wire_speed");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn"));
-        TowPrtList.add("wire_turn");
-        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"));
-        TowPrtList.add("wire_turn_total");
+        TowPrtLL.add(DataManager.getFloatList("TowWinchPrt.wire_tension"));
+        TowPrtList.add("wire_tension");
+//        TowPrtLL.add(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"));
+//        TowPrtList.add("wire_turn_total");
         h.assignListToChart(TowPrtLL, TowPrtGraph, TowPrtList);
         //TowWinchPrt Sent Values
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_brake_on"),				TowWinchPrtBool1,  "cmd_brake_on             ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_speed"),					TowWinchPrtBool2,  "cmd_speed                ");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_wire_length_paid_out"),	TowWinchPrtBool3,  "init_wire_length_paid_out");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_total_wire_length"),		TowWinchPrtBool4,  "init_total_wire_length   ");
+        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_wire_length_paid_out"),	TowWinchPrtBool3,  "init_wire_length_paid_out");
+        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.init_total_wire_length"),		TowWinchPrtBool4,  "init_total_wire_length   ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.reset_wirelengths"),			TowWinchPrtBool5,  "reset_wirelengths        ");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_diameter"),				TowWinchPrtBool6,  "wire_diameter            ");
+        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_diameter"),				TowWinchPrtBool6,  "wire_diameter            ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_weigth"),				TowWinchPrtBool7,  "wire_weigth              ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.wire_tension"),				TowWinchPrtBool8,  "wire_tension             ");
         h.assignListToChart(DataManager.getFloatList("TowWinchPrt.active_drum"),				TowWinchPrtBool9,  "active_drum              ");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_number"),		TowWinchPrtBool10, "config_kabelar_number    ");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_typeid"),		TowWinchPrtBool11, "config_kabelar_typeid    ");
-        h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_config_kabelar"),			TowWinchPrtBool12, "cmd_config_kabelar       ");
+        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_number"),		TowWinchPrtBool10, "config_kabelar_number    ");
+        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.config_kabelar_typeid"),		TowWinchPrtBool11, "config_kabelar_typeid    ");
+        //h.assignListToChart(DataManager.getFloatList("TowWinchPrt.cmd_config_kabelar"),			TowWinchPrtBool12, "cmd_config_kabelar       ");
+        
+        
         //TowWinchPrt Received Values
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.brake_on"),  			TowWinchPrtBool13, "brake_on                 "); 
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.coupling_in"), 			TowWinchPrtBool14, "coupling_in              "); 
@@ -143,10 +145,10 @@ public class ChartController {
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_speed"),			TowWinchPrtBool22, "wire_speed               "); 
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn"),			TowWinchPrtBool23, "wire_turn                "); 
         h.assignListToChart(DataManager.getFloatList("RRTowWinchPrt.wire_turn_total"),		TowWinchPrtBool24, "wire_turn_total          "); 
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_port"),	TowWinchPrtBool25, "cmd_move_port_port       "); 
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_stb"),		TowWinchPrtBool26, "cmd_move_port_stb        "); 
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_port"),		TowWinchPrtBool27, "cmd_move_stb_port        "); 
-        h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_stb"),		TowWinchPrtBool28, "cmd_move_stb_stb         "); 
+        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_port"),	TowWinchPrtBool25, "cmd_move_port_port       "); 
+        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_port_stb"),		TowWinchPrtBool26, "cmd_move_port_stb        "); 
+        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_port"),		TowWinchPrtBool27, "cmd_move_stb_port        "); 
+        //h.assignListToChart(DataManager.getFloatList("RRTowWinchPrtSpooler.cmd_move_stb_stb"),		TowWinchPrtBool28, "cmd_move_stb_stb         "); 
 	}
 
 	private void updateStbd() {
@@ -455,7 +457,8 @@ public class ChartController {
     	Thread t = new Thread() {
     	    public void run() {
     	        PcapReader reader = new PcapReader();
-    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
+    	        reader.parseFile("C:\\swire\\towcon_1399709255078.pcap");
+//    	        reader.parseFile("C:\\Users\\rwright\\Downloads\\RMB VERS Logs\\good.pcap");
 //    	        reader.parseFile("C:\\Users\\User\\Downloads\\good.pcap");
 //    	        reader.parseFile("C:\\Users\\User\\Downloads\\winch_misbehave_130813_2.pcap");
     	    }
@@ -464,28 +467,28 @@ public class ChartController {
     	t.setDaemon(true);
     	t.start();
     	
-    	Thread t2 = new Thread() {
-    	    public void run() {
-    	        while(true) {
-    	        	Platform.runLater(new Runnable() {
-    	                @Override
-    	                public void run() {
-    	                	updateGraph(null);
-    	                }
-    	            });
-    	        	
-    	        	try {
-						Thread.sleep(333);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-    	        }
-    	    }
-    	};
-    	t2.setName("Screen-Updater Thread");
-    	t2.setDaemon(true);
-    	t2.start();
+//    	Thread t2 = new Thread() {
+//    	    public void run() {
+//    	        while(true) {
+//    	        	Platform.runLater(new Runnable() {
+//    	                @Override
+//    	                public void run() {
+//    	                	updateGraph(null);
+//    	                }
+//    	            });
+//    	        	
+//    	        	try {
+//						Thread.sleep(333);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//    	        }
+//    	    }
+//    	};
+//    	t2.setName("Screen-Updater Thread");
+//    	t2.setDaemon(true);
+//    	t2.start();
     }
     
     @FXML

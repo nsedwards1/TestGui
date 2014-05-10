@@ -60,8 +60,15 @@ public class XmlProcessor {
 				if(iter.contains("=")) {
 					int equals = iter.indexOf("=");
 					String dmName = name + "." + iter.substring(0, equals);
+					
+//					if("RRTowWinchPrt".equals(name)) {
+//						System.out.println(dmName);
+//					}
+//					if(dmName.endsWith("Prt.wire_tension"))
+//						System.out.println("asdf");
+					
 					String parseValue = iter.substring(equals + 2, iter.length() - 1);
-					float dmValue = -87;
+					float dmValue = 0;
 					try {
 						if("false".equals(parseValue))
 							dmValue = 0.0f;

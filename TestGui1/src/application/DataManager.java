@@ -16,9 +16,10 @@ public class DataManager {
 	private static HashMap<String, Float> maxFloatVals = new HashMap<String, Float>();
 	
 	static {
-		maxFloatVals.put("wire_tension", 800.0F);
-		maxFloatVals.put("drum_rot_pos", 5.0F);
+		maxFloatVals.put("wire_tension", 800000.0F);
+		maxFloatVals.put("drum_rot_pos", 10.0F);
 		maxFloatVals.put("drum_radius", 2.0F);
+		maxFloatVals.put("drum_rpm", 75.0F);
 		maxFloatVals.put("winch_system_config", 10.0F);
 		maxFloatVals.put("wire_length_paid_out", 500.0F);
 		maxFloatVals.put("wire_turn_total", 12.0F);
@@ -27,6 +28,8 @@ public class DataManager {
 		
 		
 		minFloatVals.put("wire_length_on_drum", -500.0F);
+		
+		minFloatVals.put("drum_rpm", -75.0F);
 	}
 	
 	public static void printMinMaxValues() {
