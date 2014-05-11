@@ -453,6 +453,7 @@ public class ChartController {
 	}
 	
 	private boolean isWaiting = false;
+	
     
     @FXML
     private void startClicked (ActionEvent event)
